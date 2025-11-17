@@ -77,9 +77,124 @@
     }
 
     a:focus, button:focus, input:focus{outline:2px dashed rgba(124,58,237,0.35);outline-offset:4px}
+
+
+    /* ------------------------------------------------------------ */
+    /*                  POPUP GALLERY — OPTION C                     */
+    /* ------------------------------------------------------------ */
+
+    #popupGallery {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      opacity: 0;
+      transition: opacity .35s ease;
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    #popupGallery.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .popup-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      transform: scale(0.97);
+      transition: transform .35s ease;
+    }
+
+    #popupGallery.active .popup-content {
+      transform: scale(1);
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .popup-header h2 {
+      margin: 0;
+      font-family: Orbitron, Inter;
+      letter-spacing: 1px;
+    }
+
+    .close-popup-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    /* Aesthetic messy layout */
+    .masonry {
+      column-count: 3;
+      column-gap: 14px;
+    }
+
+    .masonry img {
+      width: 100%;
+      margin-bottom: 16px;
+      border-radius: 14px;
+      break-inside: avoid;
+      box-shadow: 0 0 22px rgba(255,255,255,0.08);
+      transition: transform .25s ease;
+    }
+
+    /* Option C — mixed sizes */
+    .img-small { transform: scale(0.85); }
+    .img-medium { transform: scale(1); }
+    .img-large { transform: scale(1.15); }
+
+    /* Slight natural tilt */
+    .rotate-left  { transform: rotate(-9deg); }
+    .rotate-right { transform: rotate(7deg); }
+
+    .rotate-left  { transform: rotate(-9deg); }
+
+    @media (max-width: 780px){
+      .masonry{column-count:2}
+    }
+
+    @media (max-width: 520px){
+      .masonry{column-count:1}
+    }
   </style>
 </head>
 <body>
+
+  <!-- POPUP GALLERY -->
+  <div id="popupGallery">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h2>STARS GALLERY</h2>
+        <button class="close-popup-btn" id="closeGallery">Close</button>
+      </div>
+
+      <div class="masonry">
+        <img src="images/gal1.jpg">
+        <img src="images/gal2.jpg">
+        <img src="images/gal3.png">
+        <img src="images/gal4.jpg">
+        <img src="images/gal5.jpg">
+        <img src="images/gal6.jpg">
+      </div>
+    </div>
+  </div>
+
+  <!-- --------------------------------------------- -->
+  <!-- ORIGINAL PAGE CONTENT BELOW (unchanged)       -->
+  <!-- --------------------------------------------- -->
+
   <div class="parallax" id="parallax">
     <div class="layer" style="left:-10%;top:5%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,0.16), transparent 20%), radial-gradient(circle at 70% 70%, rgba(6,182,212,0.10), transparent 30%);filter:blur(40px);transform:translateZ(0)"></div>
     <div class="layer" style="right:-6%;bottom:10%;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle at 20% 10%, rgba(255,77,109,0.12), transparent 18%), radial-gradient(circle at 80% 80%, rgba(6,182,212,0.06), transparent 30%);filter:blur(30px);transform:translateZ(0)"></div>
@@ -99,9 +214,10 @@
       <nav>
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="#collection">Collection</a>
-        <a class="nav-link" href="#gallery">Gallery</a>
-        
-       
+
+        <!-- GALLERY BUTTON OPENS POPUP -->
+        <a class="nav-link" id="openGallery" style="cursor:pointer;">Gallery</a>
+
         <a class="btn primary" href="https://wa.me/254745151478" target="_blank">Contact</a>
       </nav>
     </header>
@@ -114,12 +230,12 @@
           <div class="badge">COMING SOON!</div>
         </div>
 
-   <h1 class="fade-up" data-delay="0.1">
-  <img src="images/logo.png"
-       alt="STARS"
-       style="height:60px;width:auto;object-fit:contain;">
-  <span>— <span class="accent">WELCOME TO THE UNIVERSE!!!</span></span>
-</h1>
+        <h1 class="fade-up" data-delay="0.1">
+          <img src="images/logo.png"
+              alt="STARS"
+              style="height:60px;width:auto;object-fit:contain;">
+          <span>— <span class="accent">WELCOME TO THE UNIVERSE!!!</span></span>
+        </h1>
 
         <p class="lead fade-up" data-delay="0.2">We craft bold clothing for teens and youth who want to stand out. Limited drops, ethical production, unforgettable looks.</p>
 
@@ -250,7 +366,7 @@
     }, {threshold: 0.1});
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // Parallax movement
+    // Parallax
     const parallax = document.getElementById('parallax');
     document.addEventListener('mousemove', e => {
       const x = (e.clientX / window.innerWidth - 0.5) * 10;
@@ -259,6 +375,42 @@
         layer.style.transform = `translate(${x * (i+1)}px, ${y * (i+1)}px)`;
       });
     });
+
+    // -----------------------------------
+    // POPUP GALLERY LOGIC
+    // -----------------------------------
+    const popup = document.getElementById("popupGallery");
+    const openGallery = document.getElementById("openGallery");
+    const closeGallery = document.getElementById("closeGallery");
+
+    openGallery.addEventListener("click", () => {
+      popup.classList.add("active");
+    });
+
+    closeGallery.addEventListener("click", () => {
+      popup.classList.remove("active");
+    });
+
+    popup.addEventListener("click", e => {
+      if(e.target === popup){
+        popup.classList.remove("active");
+      }
+    });
+
+
+    /* -------------------------------------------------- */
+    /*      OPTION C — RANDOM MESSY AESTHETIC SIZES       */
+    /* -------------------------------------------------- */
+    const imgs = document.querySelectorAll(".masonry img");
+    const sizes = ["img-small", "img-medium", "img-large"];
+    const tilts = ["rotate-left", "rotate-right", ""];
+
+    imgs.forEach(img => {
+      img.classList.add( sizes[Math.floor(Math.random()*sizes.length)] );
+      img.classList.add( tilts[Math.floor(Math.random()*tilts.length)] );
+    });
+
   </script>
+
 </body>
 </html>
