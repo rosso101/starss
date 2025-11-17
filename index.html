@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>STARS</title>
+  <meta name="description" content="STARS — clothing for youth. Futuristic neon landing with parallax, floating effects and motion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#030313; --panel:rgba(255,255,255,0.04); --muted:#9aa8c3; --neon1:#7c3aed; --neon2:#06b6d4; --neon3:#ff4d6d; --glass: rgba(255,255,255,0.03);
+      --maxw:1200px; --radius:16px; --glass-border: rgba(255,255,255,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial; background:radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.09), transparent 6%), radial-gradient(800px 400px at 90% 90%, rgba(6,182,212,0.07), transparent 6%), var(--bg); color:#eaf2ff; overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    .wrap{max-width:var(--maxw);margin:36px auto;padding:28px;position:relative;z-index:5}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,var(--neon1),var(--neon2));display:flex;align-items:center;justify-content:center;font-weight:800;color:black;font-family:Orbitron,Inter;box-shadow:0 8px 40px rgba(124,58,237,0.18), 0 2px 12px rgba(6,182,212,0.08);transform:translateZ(0)}
+    nav{display:flex;gap:18px;align-items:center}
+    .muted{color:var(--muted)}
+    .nav-link{padding:8px 12px;border-radius:10px;transition:all .25s ease;color:var(--muted);font-weight:600}
+    .nav-link:hover{transform:translateY(-3px);color:white;text-shadow:0 6px 18px rgba(124,58,237,0.12)}
+    .btn{background:transparent;padding:10px 16px;border-radius:12px;border:1px solid var(--glass-border);cursor:pointer;backdrop-filter: blur(6px)}
+    .primary{background:linear-gradient(90deg,var(--neon1),var(--neon2));box-shadow:0 10px 40px rgba(124,58,237,0.12);color:#030313;border:none}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center;margin-top:36px;position:relative}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:32px;border-radius:var(--radius);box-shadow:0 10px 40px rgba(2,6,23,0.6);border:1px solid var(--glass-border);position:relative;overflow:visible}
+
+    h1{font-size:46px;line-height:1.02;margin:0;font-family:Orbitron,Inter;text-transform:uppercase;letter-spacing:1px}
+    .accent{background:linear-gradient(90deg,var(--neon2),var(--neon1));-webkit-background-clip:text;background-clip:text;color:transparent}
+    p.lead{color:var(--muted);margin:12px 0 20px;line-height:1.6;font-size:16px}
+
+    .features{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .feature{flex:1 1 160px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);backdrop-filter: blur(4px)}
+
+    .cta-row{display:flex;gap:12px;margin-top:18px}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:inline-block;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+
+    .mock{height:520px;border-radius:20px;background:linear-gradient(135deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));display:flex;flex-direction:column;gap:18px;padding:20px;align-items:center;justify-content:center;transform-style:preserve-3d}
+    .mock::before{content:'';position:absolute;inset:auto 6% 6% -6%;height:60%;width:80%;background:linear-gradient(90deg, rgba(124,58,237,0.04), rgba(6,182,212,0.03));filter:blur(50px);border-radius:40px;z-index:-1;opacity:0.8}
+
+    .phone{width:260px;height:480px;border-radius:28px;background:linear-gradient(180deg,#061027 10%, #041326 100%);display:flex;flex-direction:column;align-items:center;padding:16px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 30px 80px rgba(3,3,30,0.6)}
+    .screen{flex:1;width:100%;border-radius:18px;background:linear-gradient(180deg,#061a3a, #042039);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;position:relative;overflow:hidden}
+
+    footer{margin-top:36px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+    .neon-line{height:2px;background:linear-gradient(90deg,var(--neon1),var(--neon2),var(--neon3));filter:blur(8px);opacity:0.85;border-radius:4px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.02);backdrop-filter: blur(6px)}
+
+    .fade-up{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.9,.3,1), transform .7s cubic-bezier(.2,.9,.3,1)}
+    .in-view{opacity:1;transform:translateY(0)}
+    .float{animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+
+    .parallax{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .layer{position:absolute;will-change:transform;}
+    .ring{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,0.04);filter:blur(18px)}
+
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      h1{font-size:34px}
+      .phone{width:220px;height:420px}
+    }
+
+    @media (max-width:520px){
+      .wrap{padding:16px}
+      header{flex-direction:column;align-items:flex-start;gap:12px}
+      nav{align-self:stretch;justify-content:space-between;width:100%}
+    }
+
+    a:focus, button:focus, input:focus{outline:2px dashed rgba(124,58,237,0.35);outline-offset:4px}
+  </style>
+</head>
+<body>
+  <div class="parallax" id="parallax">
+    <div class="layer" style="left:-10%;top:5%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,0.16), transparent 20%), radial-gradient(circle at 70% 70%, rgba(6,182,212,0.10), transparent 30%);filter:blur(40px);transform:translateZ(0)"></div>
+    <div class="layer" style="right:-6%;bottom:10%;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle at 20% 10%, rgba(255,77,109,0.12), transparent 18%), radial-gradient(circle at 80% 80%, rgba(6,182,212,0.06), transparent 30%);filter:blur(30px);transform:translateZ(0)"></div>
+    <div class="layer ring" style="width:420px;height:420px;left:10%;top:18%;border-color:rgba(124,58,237,0.12)"></div>
+    <div class="layer ring" style="width:620px;height:620px;right:6%;bottom:-6%;border-color:rgba(6,182,212,0.10)"></div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="C:/Users/User/OneDrive/Documents/STARS/STARS OFFICIAL ICON.png" alt="STARS Logo" style="height:60px;width:auto;object-fit:contain;">
+        <div>
+          <div style="font-weight:800;letter-spacing:1px">STARS</div>
+          <div class="muted" style="font-size:13px">Discover your novelty</div>
+        </div>
+      </div>
+      <nav>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#collection">Collection</a>
+        <a class="nav-link" href="#gallery">Gallery</a>
+        
+       
+        <a class="btn primary" href="https://wa.me/254745151478" target="_blank">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card fade-up" data-delay="0">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="tag">NEW DROP</div>
+          <div style="flex:1"></div>
+          <div class="badge">COMING SOON!</div>
+        </div>
+
+        <h1 class="fade-up" data-delay="0.1">
+          <img src="C:/Users/User/OneDrive/Documents/STARS/STARS LOGO OPTN2.png" alt="STARS Logo" style="height:60px;width:auto;object-fit:contain;">
+          <span>— <span class="accent">WELCOME TO THE UNIVERSE!!!</span></span>
+        </h1>
+
+        <p class="lead fade-up" data-delay="0.2">We craft bold clothing for teens and youth who want to stand out. Limited drops, ethical production, unforgettable looks.</p>
+
+        <div class="features">
+          <div class="feature fade-up" data-delay="0.3"><strong>Unique Design</strong><div class="muted">Self-crafted designs that push value and meaning</div></div>
+          <div class="feature fade-up" data-delay="0.4"><strong>Community</strong><div class="muted">Built by youth, for youth — bringing people together</div></div>
+          <div class="feature fade-up" data-delay="0.5"><strong>Quality</strong><div class="muted">Sustainably sourced materials</div></div>
+        </div>
+
+        <div class="cta-row fade-up" data-delay="0.6">
+          <a class="btn primary" href="https://wa.me/254745151478" target="_blank">Contact</a>
+          <a class="btn" href="#about">Learn more</a>
+        </div>
+      </div>
+
+      <aside class="mock card fade-up float" data-delay="0.5">
+        <div style="display:flex;gap:10px;align-items:center;width:100%">
+          <div style="width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,var(--neon1),var(--neon2));box-shadow:0 8px 24px rgba(124,58,237,0.14)"></div>
+          <div class="muted">STARS App Preview</div>
+          <div style="flex:1"></div>
+          <div class="muted">Live • 768 online</div>
+        </div>
+
+        <div class="phone">
+          <div class="screen">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <div style="width:120px;height:120px;border-radius:12px;overflow:hidden;">
+                <img src="C:/Users/User/Downloads/6021317993650309446 (1).jpg" alt="Neon Hoodie" style="width:100%;height:100%;object-fit:cover;filter:drop-shadow(0 0 8px var(--neon1));animation:float 4s ease-in-out infinite;">
+              </div>
+              <div style="font-weight:800;font-size:18px;letter-spacing:1px">BLACK STAR THEMED HOODIE</div>
+              <div class="muted">Newest product • Unisex</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="neon-line" style="margin-top:28px"></div>
+
+    <section id="about" style="margin-top:28px">
+      <div class="card fade-up" data-delay="0.2">
+        <h2 style="margin:0 0 6px">About STARS</h2>
+        <p class="muted">STARS began as a small collective in May 2024. We design clothing that helps you stand out — through bold shapes and community-led drops. Our mission is to make youth feel proud and seen.</p>
+        <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap">
+          <div class="badge">EST May 2024</div>
+          <div class="badge">Collaborations</div>
+          <div class="badge">Limited Drops</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED COLLECTION -->
+    <section id="collection" style="margin-top:40px;">
+      <h2 style="margin:0 0 14px;font-family:Orbitron,Inter;letter-spacing:1px;">Featured Collection</h2>
+
+      <div class="gallery">
+        <div class="tile fade-up" data-delay="0.25" style="background-image:url('images/hoodie.jpg');background-size:cover;background-position:center;">
+          <div class="tile-overlay"><div class="tile-label">HOODIES</div></div>
+        </div>
+
+        <div class="tile fade-up" data-delay="0.3" style="background-image:url('images/sweatshirt.jpg');background-size:cover;background-position:center;">
+          <div class="tile-overlay"><div class="tile-label">SWEATSHIRTS</div></div>
+        </div>
+
+        <div class="tile fade-up" data-delay="0.35" style="background-image:url('images/tshirt.jpg');background-size:cover;background-position:center;">
+          <div class="tile-overlay"><div class="tile-label">T-SHIRTS</div></div>
+        </div>
+
+        <div class="tile fade-up" data-delay="0.45" style="background-image:url('images/caps.jpg');background-size:cover;background-position:center;">
+          <div class="tile-overlay"><div class="tile-label">TRUCKER HATS</div></div>
+        </div>
+
+      </div>
+
+      <style>
+        .gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 16px;
+          margin-top: 24px;
+        }
+        .gallery .tile {
+          position: relative;
+          height: 200px;
+          border-radius: 16px;
+          overflow: hidden;
+          border: 1px solid rgba(255,255,255,0.05);
+          background-color: rgba(255,255,255,0.03);
+          transition: all .4s ease;
+        }
+        .tile-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(3,3,30,0.75), rgba(3,3,30,0.1));
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          padding: 12px;
+          opacity: 0;
+          transition: opacity .3s ease;
+        }
+        .tile:hover .tile-overlay {
+          opacity: 1;
+        }
+        .tile-label {
+          font-weight: 700;
+          letter-spacing: 1px;
+          color: white;
+        }
+      </style>
+    </section>
+
+    <footer>
+      <div class="muted">© 2025 STARS — discover your novelty</div>
+      <div class="muted">Follow us on <a href="https://www.instagram.com/stars.kenya/">Instagram</a></div>
+    </footer>
+  </div>
+
+  <script>
+    // Fade-up animation on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.1});
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Parallax movement
+    const parallax = document.getElementById('parallax');
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+      parallax.querySelectorAll('.layer').forEach((layer, i) => {
+        layer.style.transform = `translate(${x * (i+1)}px, ${y * (i+1)}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
