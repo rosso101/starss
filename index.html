@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
+  <link rel="icon" href="images/icon.png">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>STARS</title>
@@ -78,17 +78,15 @@
 
     a:focus, button:focus, input:focus{outline:2px dashed rgba(124,58,237,0.35);outline-offset:4px}
 
-
     /* ------------------------------------------------------------ */
-    /*                  POPUP GALLERY — OPTION C                     */
+    /*                  ORDER MODAL STYLING                         */
     /* ------------------------------------------------------------ */
-
-    #popupGallery {
+    #orderModal {
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.85);
       backdrop-filter: blur(6px);
-      z-index: 9999;
+      z-index: 10000;
       display: none;
       opacity: 0;
       transition: opacity .35s ease;
@@ -96,36 +94,67 @@
       overflow-y: auto;
     }
 
-    #popupGallery.active {
+    #orderModal.active {
       display: block;
       opacity: 1;
     }
 
-    .popup-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      transform: scale(0.97);
+    .order-panel {
+      max-width: 520px;
+      margin: 48px auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 30px 80px rgba(2,6,23,0.6);
+      transform: translateY(8px);
       transition: transform .35s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    #popupGallery.active .popup-content {
-      transform: scale(1);
+    #orderModal.active .order-panel {
+      transform: translateY(0);
     }
 
-    .popup-header {
+    .order-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(124,58,237,0.05), rgba(6,182,212,0.03));
+      z-index: -1;
+      border-radius: inherit;
+    }
+
+    .order-panel::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(124,58,237,0.08), transparent 70%);
+      z-index: -1;
+    }
+
+    .order-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 22px;
     }
 
-    .popup-header h2 {
+    .order-header h2 {
       margin: 0;
       font-family: Orbitron, Inter;
       letter-spacing: 1px;
+      background: linear-gradient(90deg, var(--neon2), var(--neon1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .close-popup-btn {
+    .close-order-btn {
       background: transparent;
       border: 1px solid rgba(255,255,255,0.25);
       padding: 6px 12px;
@@ -133,66 +162,509 @@
       font-size: 14px;
       cursor: pointer;
       color: #fff;
+      transition: all .25s ease;
     }
 
-    /* Aesthetic messy layout */
-    .masonry {
-      column-count: 3;
-      column-gap: 14px;
+    .close-order-btn:hover {
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-2px);
     }
 
-    .masonry img {
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .form-control {
       width: 100%;
-      margin-bottom: 16px;
-      border-radius: 14px;
-      break-inside: avoid;
-      box-shadow: 0 0 22px rgba(255,255,255,0.08);
-      transition: transform .25s ease;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: #eaf2ff;
+      font-weight: 500;
+      transition: all .25s ease;
     }
 
-    /* Option C — mixed sizes */
-    .img-small { transform: scale(0.85); }
-    .img-medium { transform: scale(1); }
-    .img-large { transform: scale(1.15); }
+    .form-control:focus {
+      outline: none;
+      border-color: rgba(124,58,237,0.4);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+    }
 
-    /* Slight natural tilt */
-    .rotate-left  { transform: rotate(-9deg); }
-    .rotate-right { transform: rotate(7deg); }
+    .form-row {
+      display: flex;
+      gap: 12px;
+    }
 
-    .rotate-left  { transform: rotate(-9deg); }
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .order-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      background: transparent;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      color: var(--muted);
+      font-weight: 600;
+      transition: all .25s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-2px);
+    }
+
+    .btn-whatsapp {
+      flex: 1;
+      background: linear-gradient(90deg, var(--neon1), var(--neon2));
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      color: #030313;
+      font-weight: 700;
+      transition: all .25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 10px 30px rgba(124,58,237,0.2);
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(124,58,237,0.3);
+    }
+
+    .error-message {
+      color: #ff4d6d;
+      font-size: 14px;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .error-message.visible {
+      display: block;
+    }
+
+    /* Customization options for all products */
+    .customization-options {
+      display: none;
+      margin-top: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .customization-options.active {
+      display: block;
+    }
+
+    .design-options, .color-options, .style-options, .material-options {
+      margin-bottom: 16px;
+    }
+
+    .option-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    .design-grid, .color-grid, .style-grid, .material-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 8px;
+    }
+
+    /* Updated design option styling with background images */
+    .design-option {
+      position: relative;
+      overflow: hidden;
+      padding: 10px;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      font-size: 13px;
+      color: white;
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .design-option::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      transition: background 0.3s ease;
+      z-index: 1;
+    }
+
+    .design-option:hover::before {
+      background: rgba(0,0,0,0.3);
+    }
+
+    .design-option.selected::before {
+      background: rgba(124,58,237,0.5);
+      box-shadow: 0 0 0 2px rgba(124,58,237,0.8);
+    }
+
+    .design-option > span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .color-option, .style-option, .material-option {
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      font-size: 13px;
+    }
+
+    .color-option:hover, .style-option:hover, .material-option:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    .color-option.selected, .style-option.selected, .material-option.selected {
+      background: rgba(124,58,237,0.15);
+      border-color: var(--neon1);
+      box-shadow: 0 0 0 2px rgba(124,58,237,0.3);
+    }
+
+    .color-swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+      vertical-align: middle;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Gallery tile styling */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .gallery .tile {
+      position: relative;
+      height: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+      background-color: rgba(255,255,255,0.03);
+      transition: all .4s ease;
+    }
+
+    .tile-content {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+    }
+
+    .tile-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(3,3,30,0.75), rgba(3,3,30,0.1));
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 12px;
+      opacity: 0;
+      transition: opacity .3s ease;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .tile:hover .tile-overlay,
+    .tile:focus-within .tile-overlay {
+      opacity: 1;
+    }
+
+    .tile-label {
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: white;
+    }
+
+    .order-btn {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.06);
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color: white;
+      cursor: pointer;
+      font-weight:700;
+      transition: transform .18s ease, box-shadow .18s ease;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+    }
+
+    .order-btn:hover { 
+      transform: translateY(-6px); 
+      box-shadow:0 18px 38px rgba(124,58,237,0.12) 
+    }
+
+    .order-btn.primary {
+      background: linear-gradient(90deg,var(--neon1),var(--neon2));
+      color:#030313;
+      border:none;
+      box-shadow: 0 12px 40px rgba(124,58,237,0.16);
+    }
+
+    /* Always show a small Order chip on tile corner */
+    .order-chip {
+      position:absolute;
+      top:12px;
+      right:12px;
+      z-index:6;
+      transform:translateZ(0);
+    }
 
     @media (max-width: 780px){
-      .masonry{column-count:2}
+      #orderModal { padding: 20px; }
+      .order-panel { margin: 20px auto; }
     }
 
     @media (max-width: 520px){
-      .masonry{column-count:1}
+      #orderModal { padding: 12px; }
+      .order-panel { padding: 20px; }
+      .order-actions { flex-direction: column; }
+      .form-row { flex-direction: column; }
+      .design-grid, .color-grid, .style-grid, .material-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
-  <!-- POPUP GALLERY -->
-  <div id="popupGallery">
-    <div class="popup-content">
-      <div class="popup-header">
-        <h2>STARS GALLERY</h2>
-        <button class="close-popup-btn" id="closeGallery">Close</button>
+  <!-- ORDER MODAL -->
+  <div id="orderModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="order-panel" role="document">
+      <div class="order-header">
+        <h2>Place Your Order</h2>
+        <button class="close-order-btn" id="closeOrder">Close</button>
       </div>
 
-      <div class="masonry">
-        <img src="images/gal1.jpg">
-        <img src="images/gal2.jpg">
-        <img src="images/gal3.png">
-        <img src="images/gal4.jpg">
-        <img src="images/gal5.jpg">
-        <img src="images/gal6.jpg">
-      </div>
+      <form id="orderForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="product">Product</label>
+          <input type="text" id="product" class="form-control" readonly>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="size">Size</label>
+            <select id="size" class="form-control" required>
+              <option value="">Select size</option>
+              <option>XS</option>
+              <option>S</option>
+              <option>M</option>
+              <option>L</option>
+              <option>XL</option>
+              <option>XXL</option>
+            </select>
+            <div class="error-message" id="sizeError">Please select a size</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="quantity">Quantity</label>
+            <input type="number" id="quantity" class="form-control" min="1" value="1" required>
+            <div class="error-message" id="quantityError">Please enter a valid quantity</div>
+          </div>
+        </div>
+
+        <!-- Customization options for all products -->
+        <div id="customizationOptions" class="customization-options">
+          <!-- HOODIES -->
+          <div id="hoodieOptions" class="product-options">
+            <div class="design-options">
+              <div class="option-title">Choose Design</div>
+              <div class="design-grid">
+             <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')">
+                  <span>CLAIM YOUR SPACE</span>
+                </div>
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')">
+                  <span>Better Days</span>
+                </div>
+                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')">
+                  <span>Garden Design</span>
+                </div>
+                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')">
+                  <span>Welcome To Our Universe!!</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="color-options">
+              <div class="option-title">Choose Color</div>
+              <div class="color-grid">
+                <div class="color-option" data-color="Black">
+                  <span class="color-swatch" style="background-color: #000;"></span>
+                  Black
+                </div>
+
+                <div class="color-option" data-color="Burgundy">
+                  <span class="color-swatch" style="background-color: #f9f9f9;"></span>
+                  white
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SWEATSHIRTS -->
+          <div id="sweatshirtOptions" class="product-options">
+            <div class="design-options">
+              <div class="option-title">Choose Design</div>
+              <div class="design-grid">
+                    <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')">
+                  <span>CLAIM YOUR SPACE</span>
+                </div>
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')">
+                  <span>Better Days</span>
+                </div>
+                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')">
+                  <span>Garden Design</span>
+                </div>
+                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')">
+                  <span>Welcome To Our Universe!!</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="color-options">
+              <div class="option-title">Choose Color</div>
+              <div class="color-grid">
+                <div class="color-option" data-color="Forest Green">
+                  <span class="color-swatch" style="background-color: #000000;"></span>
+                  Black
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- T-SHIRTS -->
+          <div id="tshirtOptions" class="product-options">
+            <div class="style-options">
+              <div class="option-title">Choose Style</div>
+              <div class="style-grid">
+                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')">
+                  <span>CLAIM YOUR SPACE</span>
+                </div>
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')">
+                  <span>Better Days</span>
+                </div>
+                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')">
+                  <span>Garden Design</span>
+                </div>
+                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')">
+                  <span>Welcome To Our Universe!!</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="color-options">
+              <div class="option-title">Choose Color</div>
+              <div class="color-grid">
+                <div class="color-option" data-color="White">
+                  <span class="color-swatch" style="background-color: #ffffff;"></span>
+                  White
+                </div>
+                <div class="color-option" data-color="Black">
+                  <span class="color-swatch" style="background-color: #000;"></span>
+                  Black
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TRUCKER HATS -->
+          <div id="truckerHatOptions" class="product-options">
+            <div class="design-options">
+              <div class="option-title">Choose Design</div>
+              <div class="design-grid">
+                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/grafitti.png')">
+                  <span>Graffiti design</span>
+                </div>
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/WTU.png')">
+                  <span>WTU Design</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="color-options">
+              <div class="option-title">Choose Color</div>
+              <div class="color-grid">
+                <div class="color-option" data-color="Black">
+                  <span class="color-swatch" style="background-color: #000;"></span>
+                  Black on Black
+                </div>
+                <div class="color-option" data-color="Navy">
+                  <span class="color-swatch" style="background-color: #ffffff;"></span>
+                  White on Black
+                </div>
+                <div class="color-option" data-color="Forest Green">
+                  <span class="color-swatch" style="background-color: #e74482;"></span>
+                  White on Pink
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-actions">
+          <button type="button" class="btn-secondary" id="cancelOrder">Cancel</button>
+          <button type="button" class="btn-whatsapp" id="sendToWhatsApp">
+            Book your order ⭐!
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
   <!-- --------------------------------------------- -->
-  <!-- ORIGINAL PAGE CONTENT BELOW (unchanged)       -->
+  <!-- ORIGINAL PAGE CONTENT BELOW -->
   <!-- --------------------------------------------- -->
 
   <div class="parallax" id="parallax">
@@ -214,10 +686,7 @@
       <nav>
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="#collection">Collection</a>
-
-        <!-- GALLERY BUTTON OPENS POPUP -->
-        <a class="nav-link" id="openGallery" style="cursor:pointer;">Gallery</a>
-
+        <a class="nav-link" href="#gallery">Gallery</a>
         <a class="btn primary" href="https://wa.me/254745151478" target="_blank">Contact</a>
       </nav>
     </header>
@@ -292,60 +761,39 @@
       <h2 style="margin:0 0 14px;font-family:Orbitron,Inter;letter-spacing:1px;">Our Collection</h2>
 
       <div class="gallery">
-        <div class="tile fade-up" data-delay="0.25" style="background-image:url('images/hoodie.jpg');background-size:cover;background-position:center;">
-          <div class="tile-overlay"><div class="tile-label">HOODIES</div></div>
+        <div class="tile fade-up" data-delay="0.25" tabindex="0" aria-label="Hoodies">
+          <div class="tile-content" style="background-image:url('images/hoodie.jpg');">
+            <div class="order-chip">
+              <button class="order-btn" data-product="HOODIES">Order Now</button>
+            </div>
+          </div>
         </div>
 
-        <div class="tile fade-up" data-delay="0.3" style="background-image:url('images/sweatshirt.jpg');background-size:cover;background-position:center;">
-          <div class="tile-overlay"><div class="tile-label">SWEATSHIRTS</div></div>
+        <div class="tile fade-up" data-delay="0.3" tabindex="0" aria-label="Sweatshirts">
+          <div class="tile-content" style="background-image:url('images/sweatshirt.jpg');">
+            <div class="order-chip">
+              <button class="order-btn" data-product="SWEATSHIRTS">Order Now</button>
+            </div>
+          </div>
         </div>
 
-        <div class="tile fade-up" data-delay="0.35" style="background-image:url('images/tshirt.jpg');background-size:cover;background-position:center;">
-          <div class="tile-overlay"><div class="tile-label">T-SHIRTS</div></div>
+        <div class="tile fade-up" data-delay="0.35" tabindex="0" aria-label="T-Shirts">
+          <div class="tile-content" style="background-image:url('images/tshirt.jpg');">
+            <div class="order-chip">
+              <button class="order-btn" data-product="T-SHIRTS">Order Now</button>
+            </div>
+          </div>
         </div>
 
-        <div class="tile fade-up" data-delay="0.45" style="background-image:url('images/caps.jpg');background-size:cover;background-position:center;">
-          <div class="tile-overlay"><div class="tile-label">TRUCKER HATS</div></div>
+        <div class="tile fade-up" data-delay="0.45" tabindex="0" aria-label="Trucker Hats">
+          <div class="tile-content" style="background-image:url('images/caps.jpg');">
+            <div class="order-chip">
+              <button class="order-btn" data-product="TRUCKER HATS">Order Now</button>
+            </div>
+          </div>
         </div>
 
       </div>
-
-      <style>
-        .gallery {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 16px;
-          margin-top: 24px;
-        }
-        .gallery .tile {
-          position: relative;
-          height: 200px;
-          border-radius: 16px;
-          overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.05);
-          background-color: rgba(255,255,255,0.03);
-          transition: all .4s ease;
-        }
-        .tile-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(3,3,30,0.75), rgba(3,3,30,0.1));
-          display: flex;
-          align-items: flex-end;
-          justify-content: center;
-          padding: 12px;
-          opacity: 0;
-          transition: opacity .3s ease;
-        }
-        .tile:hover .tile-overlay {
-          opacity: 1;
-        }
-        .tile-label {
-          font-weight: 700;
-          letter-spacing: 1px;
-          color: white;
-        }
-      </style>
     </section>
 
     <footer>
@@ -377,39 +825,218 @@
     });
 
     // -----------------------------------
-    // POPUP GALLERY LOGIC
+    // ORDER MODAL LOGIC
     // -----------------------------------
-    const popup = document.getElementById("popupGallery");
-    const openGallery = document.getElementById("openGallery");
-    const closeGallery = document.getElementById("closeGallery");
+    const orderModal = document.getElementById('orderModal');
+    const orderForm = document.getElementById('orderForm');
+    const productInput = document.getElementById('product');
+    const sizeInput = document.getElementById('size');
+    const quantityInput = document.getElementById('quantity');
+    const sizeError = document.getElementById('sizeError');
+    const quantityError = document.getElementById('quantityError');
+    const customizationOptions = document.getElementById('customizationOptions');
+    
+    // Variables to store selected options for all products
+    let selectedDesign = '';
+    let selectedColor = '';
+    let selectedStyle = '';
+    let selectedMaterial = '';
+    let currentProduct = '';
 
-    openGallery.addEventListener("click", () => {
-      popup.classList.add("active");
+    // Attach click handlers to all order buttons
+    document.querySelectorAll('.order-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const product = btn.getAttribute('data-product') || 'PRODUCT';
+        openOrderModal(product);
+      });
     });
 
-    closeGallery.addEventListener("click", () => {
-      popup.classList.remove("active");
-    });
+    // Open modal and set product
+    function openOrderModal(productName){
+      productInput.value = productName;
+      sizeInput.value = '';
+      quantityInput.value = '1';
+      sizeError.classList.remove('visible');
+      quantityError.classList.remove('visible');
+      
+      // Reset customization options
+      selectedDesign = '';
+      selectedColor = '';
+      selectedStyle = '';
+      selectedMaterial = '';
+      currentProduct = productName;
+      
+      document.querySelectorAll('.design-option, .color-option, .style-option, .material-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      
+      // Hide all product options first
+      document.querySelectorAll('.product-options').forEach(option => {
+        option.style.display = 'none';
+      });
+      
+      // Show customization options for all products
+      customizationOptions.classList.add('active');
+      
+      // Show specific options based on product
+      switch(productName) {
+        case 'HOODIES':
+          document.getElementById('hoodieOptions').style.display = 'block';
+          break;
+        case 'SWEATSHIRTS':
+          document.getElementById('sweatshirtOptions').style.display = 'block';
+          break;
+        case 'T-SHIRTS':
+          document.getElementById('tshirtOptions').style.display = 'block';
+          break;
+        case 'TRUCKER HATS':
+          document.getElementById('truckerHatOptions').style.display = 'block';
+          break;
+      }
+      
+      orderModal.classList.add('active');
+      orderModal.setAttribute('aria-hidden', 'false');
 
-    popup.addEventListener("click", e => {
-      if(e.target === popup){
-        popup.classList.remove("active");
+      // Focus first input
+      setTimeout(() => {
+        sizeInput.focus();
+      }, 120);
+    }
+
+    // Close handlers
+    document.getElementById('closeOrder').addEventListener('click', closeOrderModal);
+    document.getElementById('cancelOrder').addEventListener('click', closeOrderModal);
+
+    function closeOrderModal(){
+      orderModal.classList.remove('active');
+      orderModal.setAttribute('aria-hidden', 'true');
+    }
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && orderModal.classList.contains('active')){
+        closeOrderModal();
       }
     });
 
-
-    /* -------------------------------------------------- */
-    /*      OPTION C — RANDOM MESSY AESTHETIC SIZES       */
-    /* -------------------------------------------------- */
-    const imgs = document.querySelectorAll(".masonry img");
-    const sizes = ["img-small", "img-medium", "img-large"];
-    const tilts = ["rotate-left", "rotate-right", ""];
-
-    imgs.forEach(img => {
-      img.classList.add( sizes[Math.floor(Math.random()*sizes.length)] );
-      img.classList.add( tilts[Math.floor(Math.random()*tilts.length)] );
+    // Design and color selection for all products
+    document.querySelectorAll('.design-option').forEach(option => {
+      option.addEventListener('click', () => {
+        document.querySelectorAll('.design-option').forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedDesign = option.getAttribute('data-design');
+      });
     });
 
+    document.querySelectorAll('.color-option').forEach(option => {
+      option.addEventListener('click', () => {
+        document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedColor = option.getAttribute('data-color');
+      });
+    });
+
+    document.querySelectorAll('.style-option').forEach(option => {
+      option.addEventListener('click', () => {
+        document.querySelectorAll('.style-option').forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedStyle = option.getAttribute('data-style');
+      });
+    });
+
+    // SEND TO WHATSAPP
+    document.getElementById('sendToWhatsApp').addEventListener('click', () => {
+      const product = productInput.value.trim();
+      const size = sizeInput.value.trim();
+      const quantity = Number(quantityInput.value);
+
+      // Validation
+      let isValid = true;
+      
+      if(!size) {
+        sizeError.classList.add('visible');
+        isValid = false;
+      } else {
+        sizeError.classList.remove('visible');
+      }
+      
+      if(!quantity || quantity < 1) {
+        quantityError.classList.add('visible');
+        isValid = false;
+      } else {
+        quantityError.classList.remove('visible');
+      }
+
+      // Additional validation for customization options
+      if (!selectedColor) {
+        alert('Please select a color for your product');
+        isValid = false;
+      }
+      
+      // Product-specific validation
+      if (product === 'HOODIES' || product === 'SWEATSHIRTS' || product === 'TRUCKER HATS') {
+        if (!selectedDesign) {
+          alert('Please select a design for your ' + product.toLowerCase());
+          isValid = false;
+        }
+      }
+      
+      if (product === 'T-SHIRTS') {
+        if (!selectedStyle) {
+          alert('Please select a style for your t-shirt');
+          isValid = false;
+        }
+      }
+
+      if(!isValid) return;
+
+      // Build message
+      const phone = '254745151478';
+      const messageLines = [
+        "Hello STARS! 👋",
+        "",
+        "I would like to place an order:",
+        `Product: ${product}`,
+        `Size: ${size}`,
+        `Quantity: ${quantity}`
+      ];
+
+      // Add customization details based on product type
+      if (selectedColor) {
+        messageLines.push(`Color: ${selectedColor}`);
+      }
+      
+      if (selectedDesign) {
+        messageLines.push(`Design: ${selectedDesign}`);
+      }
+      
+      if (selectedStyle) {
+        messageLines.push(`Style: ${selectedStyle}`);
+      }
+
+      messageLines.push(
+        "",
+        "Please let me know about availability and payment details.",
+        "",
+        "Thank you! ✨"
+      );
+      
+      const message = encodeURIComponent(messageLines.join('\n'));
+      const url = `https://wa.me/${phone}?text=${message}`;
+
+      // Open WhatsApp in new window/tab
+      window.open(url, '_blank');
+
+      // Close modal
+      closeOrderModal();
+    });
+
+    // Accessibility: when clicking outside panel, close
+    orderModal.addEventListener('click', (e) => {
+      if(e.target === orderModal){
+        closeOrderModal();
+      }
+    });
   </script>
 
 </body>
