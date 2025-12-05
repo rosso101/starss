@@ -696,7 +696,7 @@
         <div style="display:flex;align-items:center;gap:10px">
           <div class="tag">NEW DROP</div>
           <div style="flex:1"></div>
-          <div class="badge">COMING SOON!</div>
+          <div class="badge">OUT NOW!!!</div>
         </div>
 
         <h1 class="fade-up" data-delay="0.1">
@@ -924,7 +924,19 @@
       option.addEventListener('click', () => {
         document.querySelectorAll('.design-option').forEach(opt => opt.classList.remove('selected'));
         option.classList.add('selected');
-        selectedDesign = option.getAttribute('data-design');
+        
+        // Check which product section this design option belongs to
+        const parentId = option.closest('.product-options')?.id;
+        
+        if (parentId === 'tshirtOptions') {
+          // For T-SHIRTS, store as selectedStyle
+          selectedStyle = option.getAttribute('data-design');
+          selectedDesign = ''; // Reset design for other products
+        } else {
+          // For other products (HOODIES, SWEATSHIRTS, TRUCKER HATS), store as selectedDesign
+          selectedDesign = option.getAttribute('data-design');
+          selectedStyle = ''; // Reset style for T-SHIRTS
+        }
       });
     });
 
@@ -982,9 +994,12 @@
       }
       
       if (product === 'T-SHIRTS') {
-        if (!selectedStyle) {
+        if (!selectedStyle && !selectedDesign) {
           alert('Please select a style for your t-shirt');
           isValid = false;
+        } else if (selectedDesign && !selectedStyle) {
+          // If design was selected (from T-SHIRTS section), use it as style
+          selectedStyle = selectedDesign;
         }
       }
 
