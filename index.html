@@ -492,7 +492,7 @@
           <input type="text" id="product" class="form-control" readonly>
         </div>
 
-        <div class="form-row">
+        <div id="sizeQuantityRow" class="form-row">
           <div class="form-group">
             <label class="form-label" for="size">Size</label>
             <select id="size" class="form-control" required>
@@ -835,6 +835,7 @@
     const sizeError = document.getElementById('sizeError');
     const quantityError = document.getElementById('quantityError');
     const customizationOptions = document.getElementById('customizationOptions');
+    const sizeQuantityRow = document.getElementById('sizeQuantityRow');
     
     // Variables to store selected options for all products
     let selectedDesign = '';
@@ -878,6 +879,13 @@
       // Show customization options for all products
       customizationOptions.classList.add('active');
       
+      // Show/hide size selection based on product
+      if (productName === 'TRUCKER HATS') {
+        sizeQuantityRow.style.display = 'none';
+      } else {
+        sizeQuantityRow.style.display = 'flex';
+      }
+      
       // Show specific options based on product
       switch(productName) {
         case 'HOODIES':
@@ -899,7 +907,11 @@
 
       // Focus first input
       setTimeout(() => {
-        sizeInput.focus();
+        if (productName === 'TRUCKER HATS') {
+          quantityInput.focus();
+        } else {
+          sizeInput.focus();
+        }
       }, 120);
     }
 
@@ -965,11 +977,14 @@
       // Validation
       let isValid = true;
       
-      if(!size) {
-        sizeError.classList.add('visible');
-        isValid = false;
-      } else {
-        sizeError.classList.remove('visible');
+      // Skip size validation for trucker hats
+      if(product !== 'TRUCKER HATS') {
+        if(!size) {
+          sizeError.classList.add('visible');
+          isValid = false;
+        } else {
+          sizeError.classList.remove('visible');
+        }
       }
       
       if(!quantity || quantity < 1) {
@@ -1011,10 +1026,15 @@
         "Hello STARS! 👋",
         "",
         "I would like to place an order:",
-        `Product: ${product}`,
-        `Size: ${size}`,
-        `Quantity: ${quantity}`
+        `Product: ${product}`
       ];
+
+      // Add size only for non-trucker hat products
+      if(product !== 'TRUCKER HATS') {
+        messageLines.push(`Size: ${size}`);
+      }
+      
+      messageLines.push(`Quantity: ${quantity}`);
 
       // Add customization details based on product type
       if (selectedColor) {
