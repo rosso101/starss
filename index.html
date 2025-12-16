@@ -490,9 +490,13 @@
         <div class="form-group">
           <label class="form-label" for="product">Product</label>
           <input type="text" id="product" class="form-control" readonly>
+          <!-- Add price display here -->
+          <div id="productPrice" style="margin-top: 8px; font-size: 20px; font-weight: 700; color: var(--neon2); display: none;">
+            Price: <span id="priceValue">KES 0</span>
+          </div>
         </div>
 
-        <div id="sizeQuantityRow" class="form-row">
+        <div class="form-row">
           <div class="form-group">
             <label class="form-label" for="size">Size</label>
             <select id="size" class="form-control" required>
@@ -521,16 +525,16 @@
             <div class="design-options">
               <div class="option-title">Choose Design</div>
               <div class="design-grid">
-             <div class="design-option" data-design="Claim Your Space" style="background-image: url('images/cys.png')">
+             <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')">
                   <span>CLAIM YOUR SPACE</span>
                 </div>
-                <div class="design-option" data-design="Better Days" style="background-image: url('images/betterdays.png')">
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')">
                   <span>Better Days</span>
                 </div>
-                <div class="design-option" data-design="Garden Design" style="background-image: url('images/garden.png')">
+                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')">
                   <span>Garden Design</span>
                 </div>
-                <div class="design-option" data-design="Welcome To Our Universe" style="background-image: url('images/WTOU.png')">
+                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')">
                   <span>Welcome To Our Universe!!</span>
                 </div>
               </div>
@@ -544,7 +548,7 @@
                   Black
                 </div>
 
-                <div class="color-option" data-color="White">
+                <div class="color-option" data-color="Burgundy">
                   <span class="color-swatch" style="background-color: #f9f9f9;"></span>
                   white
                 </div>
@@ -557,16 +561,16 @@
             <div class="design-options">
               <div class="option-title">Choose Design</div>
               <div class="design-grid">
-            <div class="design-option" data-design="Claim Your Space" style="background-image: url('images/cys.png')">
+                    <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')">
                   <span>CLAIM YOUR SPACE</span>
                 </div>
-                <div class="design-option" data-design="Better Days" style="background-image: url('images/betterdays.png')">
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')">
                   <span>Better Days</span>
                 </div>
-                <div class="design-option" data-design="Garden Design" style="background-image: url('images/garden.png')">
+                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')">
                   <span>Garden Design</span>
                 </div>
-                <div class="design-option" data-design="Welcome To Our Universe" style="background-image: url('images/WTOU.png')">
+                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')">
                   <span>Welcome To Our Universe!!</span>
                 </div>
               </div>
@@ -575,7 +579,7 @@
             <div class="color-options">
               <div class="option-title">Choose Color</div>
               <div class="color-grid">
-                <div class="color-option" data-color="Black">
+                <div class="color-option" data-color="Forest Green">
                   <span class="color-swatch" style="background-color: #000000;"></span>
                   Black
                 </div>
@@ -589,16 +593,16 @@
             <div class="style-options">
               <div class="option-title">Choose Style</div>
               <div class="style-grid">
-            <div class="design-option" data-design="Claim Your Space" style="background-image: url('images/cys.png')">
+                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')">
                   <span>CLAIM YOUR SPACE</span>
                 </div>
-                <div class="design-option" data-design="Better Days" style="background-image: url('images/betterdays.png')">
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')">
                   <span>Better Days</span>
                 </div>
-                <div class="design-option" data-design="Garden Design" style="background-image: url('images/garden.png')">
+                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')">
                   <span>Garden Design</span>
                 </div>
-                <div class="design-option" data-design="Welcome To Our Universe" style="background-image: url('images/WTOU.png')">
+                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')">
                   <span>Welcome To Our Universe!!</span>
                 </div>
               </div>
@@ -624,10 +628,10 @@
             <div class="design-options">
               <div class="option-title">Choose Design</div>
               <div class="design-grid">
-                <div class="design-option" data-design="Graffiti Design" style="background-image: url('images/grafitti.png')">
+                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/grafitti.png')">
                   <span>Graffiti design</span>
                 </div>
-                <div class="design-option" data-design="WTU DESING" style="background-image: url('images/WTU.png')">
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/WTU.png')">
                   <span>WTU Design</span>
                 </div>
               </div>
@@ -636,15 +640,15 @@
             <div class="color-options">
               <div class="option-title">Choose Color</div>
               <div class="color-grid">
-                <div class="color-option" data-color="Black on Black">
+                <div class="color-option" data-color="Black">
                   <span class="color-swatch" style="background-color: #000;"></span>
                   Black on Black
                 </div>
-                <div class="color-option" data-color="White on Black">
+                <div class="color-option" data-color="Navy">
                   <span class="color-swatch" style="background-color: #ffffff;"></span>
                   White on Black
                 </div>
-                <div class="color-option" data-color="White on Pink">
+                <div class="color-option" data-color="Forest Green">
                   <span class="color-swatch" style="background-color: #e74482;"></span>
                   White on Pink
                 </div>
@@ -696,7 +700,7 @@
         <div style="display:flex;align-items:center;gap:10px">
           <div class="tag">NEW DROP</div>
           <div style="flex:1"></div>
-          <div class="badge">OUT NOW!!!</div>
+          <div class="badge">COMING SOON!</div>
         </div>
 
         <h1 class="fade-up" data-delay="0.1">
@@ -763,6 +767,7 @@
       <div class="gallery">
         <div class="tile fade-up" data-delay="0.25" tabindex="0" aria-label="Hoodies">
           <div class="tile-content" style="background-image:url('images/hoodie.jpg');">
+            <h2>HOODIES</h2>
             <div class="order-chip">
               <button class="order-btn" data-product="HOODIES">Order Now</button>
             </div>
@@ -771,7 +776,9 @@
 
         <div class="tile fade-up" data-delay="0.3" tabindex="0" aria-label="Sweatshirts">
           <div class="tile-content" style="background-image:url('images/sweatshirt.jpg');">
+            <h2>SWEATSHIRTS</h2>
             <div class="order-chip">
+              
               <button class="order-btn" data-product="SWEATSHIRTS">Order Now</button>
             </div>
           </div>
@@ -779,6 +786,7 @@
 
         <div class="tile fade-up" data-delay="0.35" tabindex="0" aria-label="T-Shirts">
           <div class="tile-content" style="background-image:url('images/tshirt.jpg');">
+            <h2>T-SHIRTS</h2>
             <div class="order-chip">
               <button class="order-btn" data-product="T-SHIRTS">Order Now</button>
             </div>
@@ -787,6 +795,7 @@
 
         <div class="tile fade-up" data-delay="0.45" tabindex="0" aria-label="Trucker Hats">
           <div class="tile-content" style="background-image:url('images/caps.jpg');">
+            <h2>TRUCKER HATS</h2>
             <div class="order-chip">
               <button class="order-btn" data-product="TRUCKER HATS">Order Now</button>
             </div>
@@ -835,7 +844,6 @@
     const sizeError = document.getElementById('sizeError');
     const quantityError = document.getElementById('quantityError');
     const customizationOptions = document.getElementById('customizationOptions');
-    const sizeQuantityRow = document.getElementById('sizeQuantityRow');
     
     // Variables to store selected options for all products
     let selectedDesign = '';
@@ -843,6 +851,14 @@
     let selectedStyle = '';
     let selectedMaterial = '';
     let currentProduct = '';
+
+    // Price data for each product
+    const productPrices = {
+      'HOODIES': 'KES 2,500',
+      'SWEATSHIRTS': 'KES 2,100', 
+      'T-SHIRTS': 'KES 1,200',
+      'TRUCKER HATS': 'KES 400'
+    };
 
     // Attach click handlers to all order buttons
     document.querySelectorAll('.order-btn').forEach(btn => {
@@ -879,13 +895,6 @@
       // Show customization options for all products
       customizationOptions.classList.add('active');
       
-      // Show/hide size selection based on product
-      if (productName === 'TRUCKER HATS') {
-        sizeQuantityRow.style.display = 'none';
-      } else {
-        sizeQuantityRow.style.display = 'flex';
-      }
-      
       // Show specific options based on product
       switch(productName) {
         case 'HOODIES':
@@ -902,16 +911,23 @@
           break;
       }
       
+      // Show price for the product
+      const priceElement = document.getElementById('productPrice');
+      const priceValueElement = document.getElementById('priceValue');
+      
+      if (productPrices[productName]) {
+        priceValueElement.textContent = productPrices[productName];
+        priceElement.style.display = 'block';
+      } else {
+        priceElement.style.display = 'none';
+      }
+      
       orderModal.classList.add('active');
       orderModal.setAttribute('aria-hidden', 'false');
 
       // Focus first input
       setTimeout(() => {
-        if (productName === 'TRUCKER HATS') {
-          quantityInput.focus();
-        } else {
-          sizeInput.focus();
-        }
+        sizeInput.focus();
       }, 120);
     }
 
@@ -936,19 +952,7 @@
       option.addEventListener('click', () => {
         document.querySelectorAll('.design-option').forEach(opt => opt.classList.remove('selected'));
         option.classList.add('selected');
-        
-        // Check which product section this design option belongs to
-        const parentId = option.closest('.product-options')?.id;
-        
-        if (parentId === 'tshirtOptions') {
-          // For T-SHIRTS, store as selectedStyle
-          selectedStyle = option.getAttribute('data-design');
-          selectedDesign = ''; // Reset design for other products
-        } else {
-          // For other products (HOODIES, SWEATSHIRTS, TRUCKER HATS), store as selectedDesign
-          selectedDesign = option.getAttribute('data-design');
-          selectedStyle = ''; // Reset style for T-SHIRTS
-        }
+        selectedDesign = option.getAttribute('data-design');
       });
     });
 
@@ -977,14 +981,11 @@
       // Validation
       let isValid = true;
       
-      // Skip size validation for trucker hats
-      if(product !== 'TRUCKER HATS') {
-        if(!size) {
-          sizeError.classList.add('visible');
-          isValid = false;
-        } else {
-          sizeError.classList.remove('visible');
-        }
+      if(!size) {
+        sizeError.classList.add('visible');
+        isValid = false;
+      } else {
+        sizeError.classList.remove('visible');
       }
       
       if(!quantity || quantity < 1) {
@@ -1009,12 +1010,9 @@
       }
       
       if (product === 'T-SHIRTS') {
-        if (!selectedStyle && !selectedDesign) {
+        if (!selectedStyle) {
           alert('Please select a style for your t-shirt');
           isValid = false;
-        } else if (selectedDesign && !selectedStyle) {
-          // If design was selected (from T-SHIRTS section), use it as style
-          selectedStyle = selectedDesign;
         }
       }
 
@@ -1026,15 +1024,11 @@
         "Hello STARS! 👋",
         "",
         "I would like to place an order:",
-        `Product: ${product}`
+        `Product: ${product}`,
+        `Price: ${productPrices[product] || 'Price not specified'}`,
+        `Size: ${size}`,
+        `Quantity: ${quantity}`
       ];
-
-      // Add size only for non-trucker hat products
-      if(product !== 'TRUCKER HATS') {
-        messageLines.push(`Size: ${size}`);
-      }
-      
-      messageLines.push(`Quantity: ${quantity}`);
 
       // Add customization details based on product type
       if (selectedColor) {
