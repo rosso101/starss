@@ -201,6 +201,7 @@
       color: var(--muted);
     }
 
+    /* Updated form control styling */
     .form-control {
       width: 100%;
       padding: 12px 16px;
@@ -216,6 +217,233 @@
       outline: none;
       border-color: rgba(124,58,237,0.4);
       box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+    }
+
+    /* CUSTOM DROPDOWN DESIGN - Futuristic Neon Style */
+    .custom-dropdown {
+      position: relative;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .dropdown-header {
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(124, 58, 237, 0.25);
+      background: rgba(0, 0, 0, 0.4);
+      color: #eaf2ff;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .dropdown-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, 
+        rgba(124, 58, 237, 0.1), 
+        rgba(6, 182, 212, 0.05),
+        rgba(255, 77, 109, 0.03)
+      );
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    .dropdown-header::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(124, 58, 237, 0.1) 50%,
+        transparent 70%
+      );
+      transform: translateX(-100%) rotate(45deg);
+      transition: transform 0.6s ease;
+      z-index: -1;
+    }
+
+    .dropdown-header:hover::after {
+      transform: translateX(100%) rotate(45deg);
+    }
+
+    .dropdown-header:hover {
+      border-color: var(--neon1);
+      box-shadow: 
+        0 0 20px rgba(124, 58, 237, 0.2),
+        inset 0 0 20px rgba(124, 58, 237, 0.1);
+    }
+
+    .dropdown-header.active {
+      border-color: var(--neon1);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      box-shadow: 
+        0 0 30px rgba(124, 58, 237, 0.3),
+        inset 0 0 30px rgba(124, 58, 237, 0.15);
+    }
+
+    .dropdown-arrow {
+      transition: transform 0.3s ease;
+      color: var(--neon2);
+      font-size: 12px;
+    }
+
+    .dropdown-header.active .dropdown-arrow {
+      transform: rotate(180deg);
+      color: var(--neon1);
+    }
+
+    .dropdown-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.95);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      border-top: none;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(124, 58, 237, 0.2);
+    }
+
+    .dropdown-options.active {
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    .dropdown-options::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .dropdown-options::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+    }
+
+    .dropdown-options::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--neon1), var(--neon2));
+      border-radius: 3px;
+    }
+
+    .dropdown-option {
+      padding: 14px 16px;
+      color: #eaf2ff;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dropdown-option:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-option:hover {
+      background: linear-gradient(90deg, 
+        rgba(124, 58, 237, 0.15), 
+        rgba(6, 182, 212, 0.1)
+      );
+      padding-left: 20px;
+      transform: translateX(4px);
+    }
+
+    .dropdown-option.selected {
+      background: linear-gradient(90deg, 
+        rgba(124, 58, 237, 0.25), 
+        rgba(6, 182, 212, 0.2)
+      );
+      color: white;
+      font-weight: 600;
+    }
+
+    .dropdown-option.selected::before {
+      content: '✓';
+      color: var(--neon2);
+      font-weight: bold;
+      position: absolute;
+      left: 16px;
+      animation: checkPulse 2s infinite;
+    }
+
+    @keyframes checkPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .size-indicator {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .size-xs { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .size-s { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+    .size-m { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .size-l { background: linear-gradient(135deg, #ff4d6d, #e11d48); }
+    .size-xl { background: linear-gradient(135deg, #a78bfa, #8b5cf6); }
+    .size-xxl { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+
+    .dropdown-label {
+      flex: 1;
+    }
+
+    .dropdown-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--muted);
+    }
+
+    /* Neon glow effect for dropdown */
+    .dropdown-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        var(--neon1), 
+        var(--neon2), 
+        transparent
+      );
+      filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .dropdown-header:hover .dropdown-glow,
+    .dropdown-header.active .dropdown-glow {
+      opacity: 0.8;
     }
 
     .form-row {
@@ -519,16 +747,47 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label" for="size">Size</label>
-            <select id="size" class="form-control" required>
-              <option value="">Select size</option>
-              <option>XS</option>
-              <option>S</option>
-              <option>M</option>
-              <option>L</option>
-              <option>XL</option>
-              <option>XXL</option>
-            </select>
+            <div class="custom-dropdown" id="sizeDropdown">
+              <div class="dropdown-header" id="dropdownHeader">
+                <span id="selectedSize">Choose your size</span>
+                <div class="dropdown-glow"></div>
+                <span class="dropdown-arrow">▼</span>
+              </div>
+              <div class="dropdown-options" id="dropdownOptions">
+                <div class="dropdown-option" data-value="XS">
+                  <div class="size-indicator size-xs">XS</div>
+                  <span class="dropdown-label">Extra Small</span>
+                  
+                </div>
+                <div class="dropdown-option" data-value="S">
+                  <div class="size-indicator size-s">S</div>
+                  <span class="dropdown-label">Small</span>
+                  
+                </div>
+                <div class="dropdown-option" data-value="M">
+                  <div class="size-indicator size-m">M</div>
+                  <span class="dropdown-label">Medium</span>
+                 
+                </div>
+                <div class="dropdown-option" data-value="L">
+                  <div class="size-indicator size-l">L</div>
+                  <span class="dropdown-label">Large</span>
+                
+                </div>
+                <div class="dropdown-option" data-value="XL">
+                  <div class="size-indicator size-xl">XL</div>
+                  <span class="dropdown-label">Extra Large</span>
+                  
+                </div>
+                <div class="dropdown-option" data-value="XXL">
+                  <div class="size-indicator size-xxl">XXL</div>
+                  <span class="dropdown-label">Double Extra Large</span>
+                  
+                </div>
+              </div>
+            </div>
             <div class="error-message" id="sizeError">Please select a size</div>
+            <input type="hidden" id="size" name="size" required>
           </div>
 
           <div class="form-group">
@@ -906,7 +1165,7 @@
     const orderModal = document.getElementById('orderModal');
     const orderForm = document.getElementById('orderForm');
     const productInput = document.getElementById('product');
-    const sizeInput = document.getElementById('size');
+    const sizeHiddenInput = document.getElementById('size');
     const quantityInput = document.getElementById('quantity');
     const sizeError = document.getElementById('sizeError');
     const quantityError = document.getElementById('quantityError');
@@ -915,8 +1174,6 @@
     // Variables to store selected options for all products
     let selectedDesign = '';
     let selectedColor = '';
-    let selectedStyle = '';
-    let selectedMaterial = '';
     let currentProduct = '';
 
     // Price data for each product
@@ -926,6 +1183,126 @@
       'T-SHIRTS': 'KES 1,200',
       'TRUCKER HATS': 'KES 400'
     };
+
+    // -----------------------------------
+    // CUSTOM DROPDOWN LOGIC
+    // -----------------------------------
+    const dropdownHeader = document.getElementById('dropdownHeader');
+    const dropdownOptions = document.getElementById('dropdownOptions');
+    const selectedSizeText = document.getElementById('selectedSize');
+    const dropdownOptionsList = document.querySelectorAll('.dropdown-option');
+
+    // Toggle dropdown
+    dropdownHeader.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isActive = dropdownHeader.classList.contains('active');
+      
+      // Close all other dropdowns first
+      document.querySelectorAll('.dropdown-header').forEach(header => {
+        if (header !== dropdownHeader) {
+          header.classList.remove('active');
+          header.nextElementSibling?.classList.remove('active');
+        }
+      });
+      
+      // Toggle this dropdown
+      dropdownHeader.classList.toggle('active');
+      dropdownOptions.classList.toggle('active');
+      
+      // Add smooth scroll to selected option
+      if (dropdownOptions.classList.contains('active')) {
+        const selectedOption = dropdownOptions.querySelector('.dropdown-option.selected');
+        if (selectedOption) {
+          dropdownOptions.scrollTop = selectedOption.offsetTop - dropdownOptions.offsetTop - 20;
+        }
+      }
+    });
+
+    // Select option
+    dropdownOptionsList.forEach(option => {
+      option.addEventListener('click', () => {
+        const value = option.getAttribute('data-value');
+        const label = option.querySelector('.dropdown-label').textContent;
+        
+        // Update selected text
+        selectedSizeText.textContent = `${value} - ${label}`;
+        sizeHiddenInput.value = value;
+        
+        // Update visual selection
+        dropdownOptionsList.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        
+        // Close dropdown
+        dropdownHeader.classList.remove('active');
+        dropdownOptions.classList.remove('active');
+        
+        // Remove error
+        sizeError.classList.remove('visible');
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.custom-dropdown')) {
+        dropdownHeader.classList.remove('active');
+        dropdownOptions.classList.remove('active');
+      }
+    });
+
+    // Close dropdown on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdownHeader.classList.remove('active');
+        dropdownOptions.classList.remove('active');
+      }
+    });
+
+    // Keyboard navigation for dropdown
+    dropdownHeader.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        dropdownHeader.click();
+      }
+      
+      if (e.key === 'ArrowDown' && !dropdownOptions.classList.contains('active')) {
+        e.preventDefault();
+        dropdownHeader.click();
+      }
+    });
+
+    dropdownOptions.addEventListener('keydown', (e) => {
+      const currentIndex = Array.from(dropdownOptionsList).findIndex(opt => opt.classList.contains('selected'));
+      let newIndex = currentIndex;
+      
+      switch(e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          newIndex = (currentIndex + 1) % dropdownOptionsList.length;
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          newIndex = currentIndex === -1 ? dropdownOptionsList.length - 1 : (currentIndex - 1 + dropdownOptionsList.length) % dropdownOptionsList.length;
+          break;
+        case 'Enter':
+          e.preventDefault();
+          if (currentIndex !== -1) {
+            dropdownOptionsList[currentIndex].click();
+          }
+          break;
+        case 'Escape':
+          e.preventDefault();
+          dropdownHeader.classList.remove('active');
+          dropdownOptions.classList.remove('active');
+          dropdownHeader.focus();
+          break;
+      }
+      
+      if (newIndex !== currentIndex) {
+        dropdownOptionsList.forEach(opt => opt.classList.remove('selected'));
+        dropdownOptionsList[newIndex].classList.add('selected');
+        dropdownOptionsList[newIndex].scrollIntoView({ block: 'nearest' });
+      }
+    });
 
     // Attach click handlers to all order buttons
     document.querySelectorAll('.order-btn').forEach(btn => {
@@ -938,16 +1315,18 @@
     // Open modal and set product
     function openOrderModal(productName){
       productInput.value = productName;
-      sizeInput.value = '';
+      selectedSizeText.textContent = 'Choose your size';
+      sizeHiddenInput.value = '';
       quantityInput.value = '1';
       sizeError.classList.remove('visible');
       quantityError.classList.remove('visible');
       
+      // Reset dropdown selection
+      dropdownOptionsList.forEach(opt => opt.classList.remove('selected'));
+      
       // Reset customization options
       selectedDesign = '';
       selectedColor = '';
-      selectedStyle = '';
-      selectedMaterial = '';
       currentProduct = productName;
       
       document.querySelectorAll('.design-option, .color-option, .style-option, .material-option').forEach(option => {
@@ -994,7 +1373,7 @@
 
       // Focus first input
       setTimeout(() => {
-        sizeInput.focus();
+        dropdownHeader.focus();
       }, 120);
     }
 
@@ -1005,6 +1384,10 @@
     function closeOrderModal(){
       orderModal.classList.remove('active');
       orderModal.setAttribute('aria-hidden', 'true');
+      
+      // Close dropdown if open
+      dropdownHeader.classList.remove('active');
+      dropdownOptions.classList.remove('active');
     }
 
     // Close on escape
@@ -1031,18 +1414,10 @@
       });
     });
 
-    document.querySelectorAll('.style-option').forEach(option => {
-      option.addEventListener('click', () => {
-        document.querySelectorAll('.style-option').forEach(opt => opt.classList.remove('selected'));
-        option.classList.add('selected');
-        selectedStyle = option.getAttribute('data-style');
-      });
-    });
-
     // SEND TO WHATSAPP
     document.getElementById('sendToWhatsApp').addEventListener('click', () => {
       const product = productInput.value.trim();
-      const size = sizeInput.value.trim();
+      const size = sizeHiddenInput.value.trim();
       const quantity = Number(quantityInput.value);
 
       // Validation
@@ -1050,9 +1425,11 @@
       
       if(!size) {
         sizeError.classList.add('visible');
+        dropdownHeader.style.borderColor = '#ff4d6d';
         isValid = false;
       } else {
         sizeError.classList.remove('visible');
+        dropdownHeader.style.borderColor = '';
       }
       
       if(!quantity || quantity < 1) {
@@ -1069,16 +1446,9 @@
       }
       
       // Product-specific validation
-      if (product === 'HOODIES' || product === 'SWEATSHIRTS' || product === 'TRUCKER HATS') {
+      if (product === 'HOODIES' || product === 'SWEATSHIRTS' || product === 'TRUCKER HATS' || product === 'T-SHIRTS') {
         if (!selectedDesign) {
           alert('Please select a design for your ' + product.toLowerCase());
-          isValid = false;
-        }
-      }
-      
-      if (product === 'T-SHIRTS') {
-        if (!selectedStyle) {
-          alert('Please select a style for your t-shirt');
           isValid = false;
         }
       }
@@ -1104,10 +1474,6 @@
       
       if (selectedDesign) {
         messageLines.push(`Design: ${selectedDesign}`);
-      }
-      
-      if (selectedStyle) {
-        messageLines.push(`Style: ${selectedStyle}`);
       }
 
       messageLines.push(
