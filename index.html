@@ -20,7 +20,7 @@
     html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial; background:radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.09), transparent 6%), radial-gradient(800px 400px at 90% 90%, rgba(6,182,212,0.07), transparent 6%), var(--bg); color:#eaf2ff; overflow-x:hidden}
     a{color:inherit;text-decoration:none}
 
-    .wrap{max-width:var(--maxw);margin:36px auto;padding:28px;position:relative;z-index:5}
+    .wrap{max-width:var(--maxw);margin:36px auto;padding:28px;position:relative;z-index:6}
 
     header{display:flex;align-items:center;justify-content:space-between;gap:20px}
     .brand{display:flex;align-items:center;gap:12px}
@@ -60,7 +60,7 @@
     .float{animation:float 6s ease-in-out infinite}
     @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
 
-    .parallax{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .parallax{position:absolute;inset:0;pointer-events:none;z-index:2}
     .layer{position:absolute;will-change:transform;}
     .ring{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,0.04);filter:blur(18px)}
 
@@ -82,6 +82,137 @@
 
     #liveCounter {
       animation: counterPulse 3s infinite ease-in-out;
+    }
+
+    /* ------------------------------------------------------------ */
+    /*                  SPACE BACKGROUND ELEMENTS                    */
+    /* ------------------------------------------------------------ */
+    .stars-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      animation: twinkle var(--twinkle-duration) infinite ease-in-out;
+    }
+
+    .star.small {
+      width: 1px;
+      height: 1px;
+      box-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .star.medium {
+      width: 2px;
+      height: 2px;
+      box-shadow: 0 0 3px rgba(255, 255, 255, 0.9), 0 0 6px rgba(255, 255, 255, 0.4);
+    }
+
+    .star.large {
+      width: 3px;
+      height: 3px;
+      box-shadow: 0 0 4px white, 0 0 8px rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Colored stars with subtle neon glow */
+    .star.neon1 {
+      background-color: rgba(124, 58, 237, 0.9);
+      box-shadow: 0 0 3px rgba(124, 58, 237, 0.7), 0 0 6px rgba(124, 58, 237, 0.3);
+    }
+
+    .star.neon2 {
+      background-color: rgba(6, 182, 212, 0.9);
+      box-shadow: 0 0 3px rgba(6, 182, 212, 0.7), 0 0 6px rgba(6, 182, 212, 0.3);
+    }
+
+    .star.neon3 {
+      background-color: rgba(255, 77, 109, 0.9);
+      box-shadow: 0 0 3px rgba(255, 77, 109, 0.7), 0 0 6px rgba(255, 77, 109, 0.3);
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+
+    /* Shooting stars */
+    .shooting-star {
+      position: absolute;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.8) 30%, 
+        rgba(124, 58, 237, 0.6) 70%, 
+        rgba(6, 182, 212, 0) 100%
+      );
+      border-radius: 2px;
+      filter: blur(1px);
+      transform: rotate(var(--shooting-angle));
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .shooting-star::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      right: 0;
+      width: 4px;
+      height: 4px;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 0 6px white, 0 0 12px rgba(124, 58, 237, 0.6);
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 0;
+        transform: translateX(0) translateY(0) rotate(var(--shooting-angle));
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(var(--shooting-distance-x)) translateY(var(--shooting-distance-y)) rotate(var(--shooting-angle));
+      }
+    }
+
+    /* Nebula/space cloud effects */
+    .nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.03;
+      z-index: 0;
+    }
+
+    .nebula.purple {
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.3), transparent 70%);
+    }
+
+    .nebula.cyan {
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 70%);
+    }
+
+    .nebula.pink {
+      background: radial-gradient(circle, rgba(255, 77, 109, 0.2), transparent 70%);
     }
 
     @media (max-width:980px){
@@ -106,7 +237,7 @@
       inset: 0;
       background: rgba(0,0,0,0.85);
       backdrop-filter: blur(6px);
-      z-index: 10000;
+      z-index: 10001;
       display: none;
       opacity: 0;
       transition: opacity .35s ease;
@@ -726,6 +857,9 @@
 </head>
 <body>
 
+  <!-- Space background elements -->
+  <div class="stars-bg" id="starsBackground"></div>
+
   <!-- ORDER MODAL -->
   <div id="orderModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="order-panel" role="document">
@@ -1092,6 +1226,155 @@
   </div>
 
   <script>
+    // ------------------------------------------------------------
+    //                 SPACE BACKGROUND CREATION
+    // ------------------------------------------------------------
+    function createSpaceBackground() {
+      const starsContainer = document.createElement('div');
+      starsContainer.className = 'stars-bg';
+      document.body.insertBefore(starsContainer, document.body.firstChild);
+      
+      // Create static stars
+      createStars(starsContainer);
+      
+      // Create nebula clouds
+      createNebulas(starsContainer);
+      
+      // Start shooting stars
+      startShootingStars(starsContainer);
+    }
+
+    function createStars(container) {
+      const starCount = 150; // Adjust for density
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        // Random size
+        const sizeRand = Math.random();
+        if (sizeRand < 0.7) {
+          star.classList.add('small');
+        } else if (sizeRand < 0.9) {
+          star.classList.add('medium');
+        } else {
+          star.classList.add('large');
+        }
+        
+        // Occasionally add colored stars (neon-themed)
+        const colorRand = Math.random();
+        if (colorRand < 0.1) {
+          star.classList.add('neon1');
+        } else if (colorRand < 0.15) {
+          star.classList.add('neon2');
+        } else if (colorRand < 0.2) {
+          star.classList.add('neon3');
+        }
+        
+        // Random position
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        
+        // Random twinkle duration
+        const duration = 3 + Math.random() * 7;
+        star.style.setProperty('--twinkle-duration', `${duration}s`);
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        
+        container.appendChild(star);
+      }
+    }
+
+    function createNebulas(container) {
+      // Create 3-5 nebula clouds
+      const nebulaCount = 3 + Math.floor(Math.random() * 3);
+      
+      for (let i = 0; i < nebulaCount; i++) {
+        const nebula = document.createElement('div');
+        nebula.className = 'nebula';
+        
+        // Random color
+        const colors = ['purple', 'cyan', 'pink'];
+        nebula.classList.add(colors[Math.floor(Math.random() * colors.length)]);
+        
+        // Random size and position
+        const size = 200 + Math.random() * 400;
+        nebula.style.width = `${size}px`;
+        nebula.style.height = `${size}px`;
+        nebula.style.left = `${Math.random() * 100}%`;
+        nebula.style.top = `${Math.random() * 100}%`;
+        nebula.style.opacity = `${0.02 + Math.random() * 0.03}`;
+        
+        container.appendChild(nebula);
+      }
+    }
+
+    function startShootingStars(container) {
+      // Create shooting stars at random intervals
+      function createShootingStar() {
+        const shootingStar = document.createElement('div');
+        shootingStar.className = 'shooting-star';
+        
+        // Random starting position (from top or sides)
+        const startSide = Math.random();
+        if (startSide < 0.3) {
+          // Start from top
+          shootingStar.style.left = `${Math.random() * 100}%`;
+          shootingStar.style.top = '-10px';
+          shootingStar.style.setProperty('--shooting-angle', `${-45 + Math.random() * 90}deg`);
+        } else if (startSide < 0.65) {
+          // Start from left side
+          shootingStar.style.left = '-10px';
+          shootingStar.style.top = `${Math.random() * 100}%`;
+          shootingStar.style.setProperty('--shooting-angle', `${20 + Math.random() * 50}deg`);
+        } else {
+          // Start from right side
+          shootingStar.style.left = '110%';
+          shootingStar.style.top = `${Math.random() * 100}%`;
+          shootingStar.style.setProperty('--shooting-angle', `${-70 + Math.random() * 50}deg`);
+        }
+        
+        // Random distance
+        const distanceX = 500 + Math.random() * 800;
+        const distanceY = 200 + Math.random() * 400;
+        shootingStar.style.setProperty('--shooting-distance-x', `${distanceX}px`);
+        shootingStar.style.setProperty('--shooting-distance-y', `${distanceY}px`);
+        
+        // Random duration
+        const duration = 1.5 + Math.random() * 2;
+        shootingStar.style.animation = `shoot ${duration}s linear`;
+        
+        container.appendChild(shootingStar);
+        
+        // Remove after animation completes
+        setTimeout(() => {
+          if (shootingStar.parentNode === container) {
+            container.removeChild(shootingStar);
+          }
+        }, duration * 1000);
+      }
+      
+      // Create first shooting star after a delay
+      setTimeout(() => {
+        createShootingStar();
+        
+        // Continue creating shooting stars at random intervals
+        function scheduleNext() {
+          const delay = 5000 + Math.random() * 15000; // 5-20 seconds
+          setTimeout(() => {
+            createShootingStar();
+            scheduleNext();
+          }, delay);
+        }
+        
+        scheduleNext();
+      }, 3000 + Math.random() * 7000);
+    }
+
+    // Initialize space background when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      createSpaceBackground();
+    });
+
     // Fade-up animation on scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
