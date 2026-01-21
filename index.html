@@ -349,6 +349,7 @@
       pointer-events: none;
       z-index: 2;
       overflow: hidden;
+      display: none;
     }
     
     .layer {
@@ -394,7 +395,6 @@
       pointer-events: none;
       z-index: 0;
       overflow: hidden;
-      display: none;
     }
 
     .star {
@@ -503,7 +503,6 @@
       filter: blur(40px);
       opacity: 0.03;
       z-index: 0;
-      display: none;
     }
 
     .nebula.purple {
@@ -1181,11 +1180,7 @@
         display: block;
       }
       
-      .stars-bg {
-        display: block;
-      }
-      
-      .nebula {
+      .parallax {
         display: block;
       }
     }
@@ -1780,9 +1775,8 @@
     //                 SPACE BACKGROUND CREATION
     // ------------------------------------------------------------
     function createSpaceBackground() {
-      const starsContainer = document.createElement('div');
-      starsContainer.className = 'stars-bg';
-      document.body.insertBefore(starsContainer, document.body.firstChild);
+      const starsContainer = document.getElementById('starsBackground');
+      if (!starsContainer) return;
       
       // Create static stars
       createStars(starsContainer);
@@ -1795,7 +1789,7 @@
     }
 
     function createStars(container) {
-      const starCount = 150; // Adjust for density
+      const starCount = window.innerWidth < 768 ? 80 : 150; // Fewer stars on mobile for performance
       
       for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
@@ -1836,7 +1830,7 @@
 
     function createNebulas(container) {
       // Create 3-5 nebula clouds
-      const nebulaCount = 3 + Math.floor(Math.random() * 3);
+      const nebulaCount = window.innerWidth < 768 ? 2 : 3 + Math.floor(Math.random() * 3);
       
       for (let i = 0; i < nebulaCount; i++) {
         const nebula = document.createElement('div');
@@ -1847,7 +1841,7 @@
         nebula.classList.add(colors[Math.floor(Math.random() * colors.length)]);
         
         // Random size and position
-        const size = 200 + Math.random() * 400;
+        const size = window.innerWidth < 768 ? 100 + Math.random() * 200 : 200 + Math.random() * 400;
         nebula.style.width = `${size}px`;
         nebula.style.height = `${size}px`;
         nebula.style.left = `${Math.random() * 100}%`;
@@ -1861,6 +1855,9 @@
     function startShootingStars(container) {
       // Create shooting stars at random intervals
       function createShootingStar() {
+        // Reduce shooting stars on mobile for performance
+        if (window.innerWidth < 768 && Math.random() < 0.7) return;
+        
         const shootingStar = document.createElement('div');
         shootingStar.className = 'shooting-star';
         
@@ -1909,7 +1906,10 @@
         
         // Continue creating shooting stars at random intervals
         function scheduleNext() {
-          const delay = 5000 + Math.random() * 15000; // 5-20 seconds
+          const delay = window.innerWidth < 768 ? 
+            10000 + Math.random() * 20000 : // 10-30 seconds on mobile
+            5000 + Math.random() * 15000; // 5-20 seconds on desktop
+          
           setTimeout(() => {
             createShootingStar();
             scheduleNext();
