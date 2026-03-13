@@ -55,50 +55,7 @@
       height: auto;
     }
 
-    /* SALE BANNER - Fixed at top */
-    .sale-banner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(90deg, 
-        var(--neon1) 0%, 
-        var(--neon2) 30%, 
-        var(--neon3) 70%, 
-        var(--neon1) 100%);
-      color: #030313;
-      text-align: center;
-      padding: 10px;
-      font-weight: 800;
-      font-size: 16px;
-      letter-spacing: 1px;
-      z-index: 10000;
-      animation: pulseBanner 2s infinite alternate;
-      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
-    }
-
-    @keyframes pulseBanner {
-      0% { opacity: 0.9; }
-      100% { opacity: 1; }
-    }
-
-    /* SALE COUNTDOWN TIMER */
-    .sale-countdown {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin: 12px 0 24px;
-      flex-wrap: wrap;
-    }
-
-    .countdown-label {
-      font-weight: 700;
-      color: var(--muted);
-      font-size: 14px;
-      letter-spacing: 1px;
-    }
-
+    /* COUNTDOWN TIMER (non-sale) */
     .countdown-container {
       display: flex;
       gap: 8px;
@@ -139,61 +96,13 @@
       100% { text-shadow: 0 0 20px rgba(6, 182, 212, 0.8), 0 0 30px rgba(6, 182, 212, 0.3); }
     }
 
-    /* SALE BADGE for T-shirt tile */
-    .sale-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      z-index: 10;
-      background: linear-gradient(135deg, var(--neon3), var(--neon1));
-      color: #030313;
-      font-weight: 900;
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 20px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      animation: badgePulse 2s infinite alternate;
-      box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
-    }
-
-    @keyframes badgePulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.05); }
-    }
-
-    /* SALE PRICE STYLING */
-    .sale-price {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-
-    .original-price {
-      text-decoration: line-through;
-      color: var(--muted);
-      font-size: 14px;
-      opacity: 0.7;
-    }
-
-    .current-price {
+    /* Regular price styling */
+    .product-price {
       color: var(--neon2);
       font-weight: 900;
       font-size: 20px;
       text-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
-      animation: priceGlow 3s infinite alternate;
-    }
-
-    .discount-percent {
-      background: linear-gradient(135deg, var(--neon3), var(--neon1));
-      color: #030313;
-      font-weight: 800;
-      font-size: 11px;
-      padding: 3px 6px;
-      border-radius: 12px;
-      animation: discountPulse 2s infinite;
+      margin-top: 8px;
     }
 
     @keyframes priceGlow {
@@ -201,79 +110,16 @@
       100% { text-shadow: 0 0 15px rgba(6, 182, 212, 0.6), 0 0 25px rgba(6, 182, 212, 0.2); }
     }
 
-    @keyframes discountPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-    /* T-SHIRT TILE SPECIAL STYLING */
+    /* T-SHIRT TILE REGULAR STYLING (no sale badge) */
     .tile[aria-label="T-Shirts"] {
       position: relative;
-      border: 2px solid transparent;
-      background: linear-gradient(45deg, 
-        rgba(124, 58, 237, 0.1), 
-        rgba(6, 182, 212, 0.05)) padding-box,
-        linear-gradient(45deg, 
-        var(--neon1), 
-        var(--neon2), 
-        var(--neon3)) border-box;
-      animation: borderGlow 3s infinite alternate;
-    }
-
-    @keyframes borderGlow {
-      0% { border-color: rgba(124, 58, 237, 0.5); }
-      100% { border-color: rgba(6, 182, 212, 0.5); }
+      border: 1px solid var(--glass-border);
     }
 
     .tile[aria-label="T-Shirts"] .tile-overlay {
       background: linear-gradient(to top, 
         rgba(3, 3, 30, 0.85), 
         rgba(124, 58, 237, 0.2));
-    }
-
-    /* SALE SECTION STYLING */
-    .sale-section {
-      margin: 30px 0;
-      padding: 24px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, 
-        rgba(124, 58, 237, 0.1), 
-        rgba(6, 182, 212, 0.05), 
-        rgba(255, 77, 109, 0.03));
-      border: 1px solid var(--glass-border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .sale-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, 
-        rgba(124, 58, 237, 0.08) 0%, 
-        transparent 70%);
-      animation: rotate 20s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .sale-heading {
-      text-align: center;
-      margin-bottom: 20px;
-      font-family: Orbitron, Inter;
-      background: linear-gradient(90deg, var(--neon1), var(--neon2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-size: clamp(24px, 5vw, 32px);
-      letter-spacing: 2px;
     }
 
     .wrap {
@@ -857,7 +703,6 @@
       font-size: 14px;
     }
 
-    /* Updated form control styling */
     .form-control {
       width: 100%;
       padding: 14px 16px;
@@ -1216,7 +1061,6 @@
       gap: 8px;
     }
 
-    /* Updated design option styling with background images */
     .design-option {
       position: relative;
       overflow: hidden;
@@ -1380,7 +1224,6 @@
       box-shadow: 0 12px 40px rgba(124,58,237,0.16);
     }
 
-    /* Always show a small Order chip on tile corner */
     .order-chip {
       position: absolute;
       top: 12px;
@@ -1572,12 +1415,6 @@
         margin: 8px auto !important;
       }
       
-      /* SALE RESPONSIVE */
-      .sale-banner {
-        font-size: 12px;
-        padding: 8px;
-      }
-      
       .countdown-container {
         padding: 8px 12px;
       }
@@ -1588,10 +1425,6 @@
       
       .countdown-unit {
         min-width: 40px;
-      }
-      
-      .sale-section {
-        padding: 16px;
       }
     }
 
@@ -1614,7 +1447,6 @@
         max-width: 180px;
       }
       
-      /* SALE RESPONSIVE */
       .countdown-container {
         gap: 4px;
       }
@@ -1626,10 +1458,6 @@
       .countdown-value {
         font-size: 16px;
       }
-      
-      .current-price {
-        font-size: 18px;
-      }
     }
 
     /* Accessibility focus styles */
@@ -1640,11 +1468,6 @@
   </style>
 </head>
 <body>
-
-  <!-- SALE BANNER -->
-  <div class="sale-banner">
-    🎉 LIMITED TIME OFFER: T-SHIRTS NOW ONLY KES 900! SALE ENDS MARCH 3, 2026 🎉
-  </div>
 
   <!-- Space background elements -->
   <div class="stars-bg" id="starsBackground"></div>
@@ -1783,7 +1606,7 @@
             </div>
           </div>
 
-          <!-- T-SHIRTS -->
+          <!-- T-SHIRTS (no sale styling) -->
           <div id="tshirtOptions" class="product-options">
             <div class="style-options">
               <div class="option-title">Choose Style</div>
@@ -1913,29 +1736,6 @@
           <div class="feature fade-up" data-delay="0.5"><strong>Quality</strong><div class="muted">Sustainably sourced materials</div></div>
         </div>
 
-        <!-- SALE COUNTDOWN TIMER -->
-        <div class="sale-countdown fade-up" data-delay="0.7">
-          <span class="countdown-label">SALE ENDS IN:</span>
-          <div class="countdown-container">
-            <div class="countdown-unit">
-              <span class="countdown-value" id="days">00</span>
-              <span class="countdown-label-small">DAYS</span>
-            </div>
-            <div class="countdown-unit">
-              <span class="countdown-value" id="hours">00</span>
-              <span class="countdown-label-small">HOURS</span>
-            </div>
-            <div class="countdown-unit">
-              <span class="countdown-value" id="minutes">00</span>
-              <span class="countdown-label-small">MINUTES</span>
-            </div>
-            <div class="countdown-unit">
-              <span class="countdown-value" id="seconds">00</span>
-              <span class="countdown-label-small">SECONDS</span>
-            </div>
-          </div>
-        </div>
-
         <div class="cta-row fade-up" data-delay="0.6">
           <a class="btn primary" href="https://wa.me/254745151478" target="_blank">Contact</a>
           <a class="btn" href="#about">Learn more</a>
@@ -1954,10 +1754,10 @@
           <div class="screen">
             <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px;text-align:center;">
               <div style="width:100px;height:100px;border-radius:12px;overflow:hidden;">
-                <img src="images/hoodie.jpg" alt="Neon Hoodie" style="width:100%;height:100%;object-fit:cover;filter:drop-shadow(0 0 8px var(--neon1));animation:float 4s ease-in-out infinite;">
+                <img src="images/comingsoon.png" alt="Neon Hoodie" style="width:100%;height:100%;object-fit:cover;filter:drop-shadow(0 0 8px var(--neon1));animation:float 4s ease-in-out infinite;">
               </div>
-              <div style="font-weight:800;font-size:16px;letter-spacing:0.5px">BLACK STAR THEMED HOODIE</div>
-              <div class="muted" style="font-size:12px">Newest product • Unisex</div>
+              <div style="font-weight:800;font-size:16px;letter-spacing:0.5px">LIMITED EDITION</div>
+              <div class="muted" style="font-size:12px">Coming Soon • Black</div>
             </div>
           </div>
         </div>
@@ -1965,32 +1765,6 @@
     </section>
 
     <div class="neon-line"></div>
-
-    <!-- DEDICATED SALE SECTION -->
-    <section class="sale-section fade-up" data-delay="0.4">
-      <h2 class="sale-heading">T-SHIRT SALE IS LIVE!</h2>
-      <div class="card" style="background: transparent; border: none; padding: 0;">
-        <p style="text-align: center; font-size: clamp(14px, 4vw, 16px); margin-bottom: 16px;">
-          Don't miss this limited-time opportunity! Our premium T-shirts are now available at an incredible 
-          <strong style="color: var(--neon2);">25% discount</strong>. 
-          This offer ends on March 3, 2026 - grab yours before the timer runs out!
-        </p>
-        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
-          <div style="text-align: center;">
-            <div style="font-size: 36px; font-weight: 900; color: var(--neon2);">KES 900</div>
-            <div style="font-size: 12px; color: var(--muted);">SALE PRICE</div>
-          </div>
-          <div style="text-align: center;">
-            <div style="font-size: 24px; text-decoration: line-through; color: var(--muted); opacity: 0.7;">KES 1,200</div>
-            <div style="font-size: 12px; color: var(--muted);">ORIGINAL PRICE</div>
-          </div>
-          <div style="text-align: center;">
-            <div style="font-size: 36px; font-weight: 900; color: var(--neon3);">25%</div>
-            <div style="font-size: 12px; color: var(--muted);">DISCOUNT</div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section id="about" style="margin-top:24px">
       <div class="card fade-up" data-delay="0.2">
@@ -2031,17 +1805,11 @@
           </div>
         </div>
 
-        <!-- T-SHIRT TILE WITH SALE STYLING -->
+        <!-- T-SHIRT TILE (no sale styling) -->
         <div class="tile fade-up" data-delay="0.35" tabindex="0" aria-label="T-Shirts">
-          <div class="sale-badge">SALE</div>
           <div class="tile-content" style="background-image:url('images/tshirt.jpg');">
             <div class="tile-overlay">
               <h2 style="margin:0;font-size:clamp(18px,5vw,24px)">T-SHIRTS</h2>
-              <div class="sale-price">
-                <span class="original-price">KES 1,200</span>
-                <span class="current-price">KES 900</span>
-                <span class="discount-percent">25% OFF</span>
-              </div>
               <div class="order-chip">
                 <button class="order-btn primary" data-product="T-SHIRTS">Order Now</button>
               </div>
@@ -2304,45 +2072,12 @@
       }, 1000 + Math.random() * 2000); // Start sooner
     }
 
-    // ------------------------------------------------------------
-    //                 SALE COUNTDOWN TIMER
-    // ------------------------------------------------------------
-    function updateCountdown() {
-      const saleEnd = new Date('March 3, 2026 23:59:59').getTime();
-      const now = new Date().getTime();
-      const timeLeft = saleEnd - now;
-
-      if (timeLeft < 0) {
-        // Sale has ended
-        document.querySelector('.sale-banner').textContent = 'SALE ENDED - THANK YOU FOR SHOPPING WITH US!';
-        document.querySelector('.sale-banner').style.background = 'linear-gradient(90deg, #666, #999)';
-        document.querySelector('.countdown-container').innerHTML = '<span style="color: var(--muted);">Sale has ended</span>';
-        return;
-      }
-
-      // Calculate days, hours, minutes, seconds
-      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-      // Update display with animation
-      animateCounter(document.getElementById('days'), days);
-      animateCounter(document.getElementById('hours'), hours);
-      animateCounter(document.getElementById('minutes'), minutes);
-      animateCounter(document.getElementById('seconds'), seconds);
-    }
-
     // Initialize space background when DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
       createSpaceBackground();
       
       // Start the counter animation
       setTimeout(updateLiveCounter, 2000);
-      
-      // Initialize countdown
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
     });
 
     // Fade-up animation on scroll
@@ -2429,7 +2164,7 @@
     const productPrices = {
       'HOODIES': 'KES 2,500',
       'SWEATSHIRTS': 'KES 2,100', 
-      'T-SHIRTS': 'KES 900 (SALE!)',
+      'T-SHIRTS': 'KES 1,200',
       'TRUCKER HATS': 'KES 400'
     };
 
@@ -2626,20 +2361,12 @@
       }, 120);
     }
 
-    // Update price in order modal for T-shirts
+    // Update price in order modal
     function updateProductPriceInModal(productName) {
       const priceElement = document.getElementById('productPrice');
       const priceValueElement = document.getElementById('priceValue');
       
-      if (productName === 'T-SHIRTS') {
-        // Show both original and sale price
-        priceValueElement.innerHTML = `
-          <span style="text-decoration: line-through; color: var(--muted); margin-right: 8px;">KES 1,200</span>
-          <span style="color: var(--neon2); font-weight: 900;">KES 900</span>
-          <span style="background: var(--neon3); color: #030313; padding: 2px 6px; border-radius: 8px; font-size: 12px; margin-left: 8px;">SALE</span>
-        `;
-        priceElement.style.display = 'block';
-      } else if (productPrices[productName]) {
+      if (productPrices[productName]) {
         priceValueElement.textContent = productPrices[productName];
         priceElement.style.display = 'block';
       } else {
@@ -2750,10 +2477,8 @@
           `Product: ${product}`
         ];
 
-        // Add sale price for T-shirts
-        if (product === 'T-SHIRTS') {
-          messageLines.push(`Price: KES 900 (SALE PRICE! Original: KES 1,200)`);
-        } else if (productPrices[product]) {
+        // Add price
+        if (productPrices[product]) {
           messageLines.push(`Price: ${productPrices[product]}`);
         }
         
