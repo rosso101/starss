@@ -96,7 +96,6 @@
       100% { text-shadow: 0 0 20px rgba(6, 182, 212, 0.8), 0 0 30px rgba(6, 182, 212, 0.3); }
     }
 
-    /* Regular price styling */
     .product-price {
       color: var(--neon2);
       font-weight: 900;
@@ -105,12 +104,6 @@
       margin-top: 8px;
     }
 
-    @keyframes priceGlow {
-      0% { text-shadow: 0 0 8px rgba(6, 182, 212, 0.3); }
-      100% { text-shadow: 0 0 15px rgba(6, 182, 212, 0.6), 0 0 25px rgba(6, 182, 212, 0.2); }
-    }
-
-    /* T-SHIRT TILE REGULAR STYLING (no sale badge) */
     .tile[aria-label="T-Shirts"] {
       position: relative;
       border: 1px solid var(--glass-border);
@@ -122,6 +115,40 @@
         rgba(124, 58, 237, 0.2));
     }
 
+    .collection-price {
+      margin-top: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    
+    .old-price {
+      color: #a0a0c0;
+      text-decoration: line-through;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    
+    .new-price {
+      color: var(--neon2);
+      font-weight: 800;
+      font-size: 16px;
+      text-shadow: 0 0 6px rgba(6,182,212,0.4);
+      background: rgba(6,182,212,0.1);
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+    
+    .price-divider {
+      color: rgba(255,255,255,0.25);
+      font-size: 12px;
+    }
+    
     .wrap {
       max-width: var(--maxw);
       margin: 20px auto;
@@ -202,6 +229,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all .25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
     }
     
     .primary {
@@ -274,6 +308,7 @@
       min-width: 0;
     }
 
+    /* --- CTA ROW (Contact + Learn More) --- */
     .cta-row {
       display: flex;
       flex-direction: column;
@@ -284,6 +319,73 @@
     .cta-row .btn {
       width: 100%;
       text-align: center;
+    }
+
+    /* --- SECONDARY CTA ROW (View Collections + NOVA) --- */
+    .cta-row-secondary {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin-top: 28px;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
+
+    .cta-row-secondary .btn {
+      flex: 1;
+      max-width: 180px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #eaf2ff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all .25s ease;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .btn-nova {
+      background: linear-gradient(90deg, rgba(255,77,109,0.15), rgba(124,58,237,0.15));
+      border: 1px solid rgba(255,77,109,0.3);
+      color: #eaf2ff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: Orbitron, Inter;
+      letter-spacing: 1px;
+      transition: all .25s ease;
+      box-shadow: 0 4px 20px rgba(255,77,109,0.1);
+    }
+
+    .btn-nova:hover {
+      background: linear-gradient(90deg, rgba(255,77,109,0.25), rgba(124,58,237,0.25));
+      border-color: rgba(255,77,109,0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255,77,109,0.2);
     }
     
     .tag {
@@ -433,7 +535,6 @@
       display: none;
     }
 
-    /* Smooth counter animation */
     #liveCounter {
       transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: inline-block;
@@ -443,7 +544,6 @@
       text-shadow: 0 0 10px rgba(6,182,212,0.3);
     }
 
-    /* Optional: Add a pulsing glow effect */
     @keyframes counterPulse {
       0%, 100% { text-shadow: 0 0 10px rgba(6,182,212,0.3); }
       50% { text-shadow: 0 0 20px rgba(6,182,212,0.6), 0 0 30px rgba(6,182,212,0.3); }
@@ -453,9 +553,7 @@
       animation: counterPulse 3s infinite ease-in-out;
     }
 
-    /* ------------------------------------------------------------ */
-    /*                  SPACE BACKGROUND ELEMENTS                    */
-    /* ------------------------------------------------------------ */
+    /* SPACE BACKGROUND */
     .stars-bg {
       position: fixed;
       inset: 0;
@@ -471,62 +569,23 @@
       animation: twinkle var(--twinkle-duration) infinite ease-in-out;
     }
 
-    .star.small {
-      width: 1px;
-      height: 1px;
-      box-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
-    }
-
-    .star.medium {
-      width: 2px;
-      height: 2px;
-      box-shadow: 0 0 3px rgba(255, 255, 255, 0.9), 0 0 6px rgba(255, 255, 255, 0.4);
-    }
-
-    .star.large {
-      width: 3px;
-      height: 3px;
-      box-shadow: 0 0 4px white, 0 0 8px rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 255, 255, 0.3);
-    }
-
-    /* Colored stars with subtle neon glow */
-    .star.neon1 {
-      background-color: rgba(124, 58, 237, 0.9);
-      box-shadow: 0 0 3px rgba(124, 58, 237, 0.7), 0 0 6px rgba(124, 58, 237, 0.3);
-    }
-
-    .star.neon2 {
-      background-color: rgba(6, 182, 212, 0.9);
-      box-shadow: 0 0 3px rgba(6, 182, 212, 0.7), 0 0 6px rgba(6, 182, 212, 0.3);
-    }
-
-    .star.neon3 {
-      background-color: rgba(255, 77, 109, 0.9);
-      box-shadow: 0 0 3px rgba(255, 77, 109, 0.7), 0 0 6px rgba(255, 77, 109, 0.3);
-    }
+    .star.small { width: 1px; height: 1px; box-shadow: 0 0 2px rgba(255,255,255,0.8); }
+    .star.medium { width: 2px; height: 2px; box-shadow: 0 0 3px rgba(255,255,255,0.9), 0 0 6px rgba(255,255,255,0.4); }
+    .star.large { width: 3px; height: 3px; box-shadow: 0 0 4px white, 0 0 8px rgba(255,255,255,0.6), 0 0 12px rgba(255,255,255,0.3); }
+    .star.neon1 { background-color: rgba(124,58,237,0.9); box-shadow: 0 0 3px rgba(124,58,237,0.7), 0 0 6px rgba(124,58,237,0.3); }
+    .star.neon2 { background-color: rgba(6,182,212,0.9); box-shadow: 0 0 3px rgba(6,182,212,0.7), 0 0 6px rgba(6,182,212,0.3); }
+    .star.neon3 { background-color: rgba(255,77,109,0.9); box-shadow: 0 0 3px rgba(255,77,109,0.7), 0 0 6px rgba(255,77,109,0.3); }
 
     @keyframes twinkle {
-      0%, 100% {
-        opacity: 0.3;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.1);
-      }
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
     }
 
-    /* Shooting stars */
     .shooting-star {
       position: absolute;
       height: 2px;
       width: 100px;
-      background: linear-gradient(90deg, 
-        rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.8) 30%, 
-        rgba(124, 58, 237, 0.6) 70%, 
-        rgba(6, 182, 212, 0) 100%
-      );
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 30%, rgba(124,58,237,0.6) 70%, rgba(6,182,212,0) 100%);
       border-radius: 2px;
       filter: blur(1px);
       transform: rotate(var(--shooting-angle));
@@ -544,35 +603,21 @@
       height: 4px;
       background-color: white;
       border-radius: 50%;
-      box-shadow: 0 0 6px white, 0 0 12px rgba(124, 58, 237, 0.6);
+      box-shadow: 0 0 6px white, 0 0 12px rgba(124,58,237,0.6);
     }
 
     @keyframes shoot {
-      0% {
-        opacity: 0;
-        transform: translateX(0) translateY(0) rotate(var(--shooting-angle)) scale(0.8);
-      }
-      10% {
-        opacity: 1;
-        transform: translateX(0) translateY(0) rotate(var(--shooting-angle)) scale(1);
-      }
-      90% {
-        opacity: 1;
-        transform: translateX(var(--shooting-distance-x)) translateY(var(--shooting-distance-y)) rotate(var(--shooting-angle)) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translateX(var(--shooting-distance-x)) translateY(var(--shooting-distance-y)) rotate(var(--shooting-angle)) scale(0.5);
-      }
+      0% { opacity: 0; transform: translateX(0) translateY(0) rotate(var(--shooting-angle)) scale(0.8); }
+      10% { opacity: 1; transform: translateX(0) translateY(0) rotate(var(--shooting-angle)) scale(1); }
+      90% { opacity: 1; transform: translateX(var(--shooting-distance-x)) translateY(var(--shooting-distance-y)) rotate(var(--shooting-angle)) scale(1); }
+      100% { opacity: 0; transform: translateX(var(--shooting-distance-x)) translateY(var(--shooting-distance-y)) rotate(var(--shooting-angle)) scale(0.5); }
     }
 
-    /* Flicker effect for more realism */
     @keyframes flicker {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.7; }
     }
 
-    /* Nebula/space cloud effects */
     .nebula {
       position: absolute;
       border-radius: 50%;
@@ -581,21 +626,11 @@
       z-index: 0;
     }
 
-    .nebula.purple {
-      background: radial-gradient(circle, rgba(124, 58, 237, 0.3), transparent 70%);
-    }
+    .nebula.purple { background: radial-gradient(circle, rgba(124,58,237,0.3), transparent 70%); }
+    .nebula.cyan { background: radial-gradient(circle, rgba(6,182,212,0.2), transparent 70%); }
+    .nebula.pink { background: radial-gradient(circle, rgba(255,77,109,0.2), transparent 70%); }
 
-    .nebula.cyan {
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 70%);
-    }
-
-    .nebula.pink {
-      background: radial-gradient(circle, rgba(255, 77, 109, 0.2), transparent 70%);
-    }
-
-    /* ------------------------------------------------------------ */
-    /*                  ORDER MODAL STYLING                         */
-    /* ------------------------------------------------------------ */
+    /* ORDER MODAL */
     #orderModal {
       position: fixed;
       inset: 0;
@@ -630,9 +665,7 @@
       width: calc(100% - 24px);
     }
 
-    #orderModal.active .order-panel {
-      transform: translateY(0);
-    }
+    #orderModal.active .order-panel { transform: translateY(0); }
 
     .order-panel::before {
       content: '';
@@ -691,9 +724,7 @@
       transform: translateY(-2px);
     }
 
-    .form-group {
-      margin-bottom: 16px;
-    }
+    .form-group { margin-bottom: 16px; }
 
     .form-label {
       display: block;
@@ -723,18 +754,13 @@
       box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
     }
 
-    /* CUSTOM DROPDOWN DESIGN - Futuristic Neon Style */
-    .custom-dropdown {
-      position: relative;
-      width: 100%;
-      cursor: pointer;
-    }
+    .custom-dropdown { position: relative; width: 100%; cursor: pointer; }
 
     .dropdown-header {
       padding: 14px 16px;
       border-radius: 12px;
-      border: 1px solid rgba(124, 58, 237, 0.25);
-      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(124,58,237,0.25);
+      background: rgba(0,0,0,0.4);
       color: #eaf2ff;
       font-weight: 500;
       display: flex;
@@ -752,11 +778,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, 
-        rgba(124, 58, 237, 0.1), 
-        rgba(6, 182, 212, 0.05),
-        rgba(255, 77, 109, 0.03)
-      );
+      background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05), rgba(255,77,109,0.03));
       z-index: -1;
       opacity: 0.5;
     }
@@ -768,47 +790,28 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(124, 58, 237, 0.1) 50%,
-        transparent 70%
-      );
+      background: linear-gradient(45deg, transparent 30%, rgba(124,58,237,0.1) 50%, transparent 70%);
       transform: translateX(-100%) rotate(45deg);
       transition: transform 0.6s ease;
       z-index: -1;
     }
 
-    .dropdown-header:hover::after {
-      transform: translateX(100%) rotate(45deg);
-    }
+    .dropdown-header:hover::after { transform: translateX(100%) rotate(45deg); }
 
     .dropdown-header:hover {
       border-color: var(--neon1);
-      box-shadow: 
-        0 0 20px rgba(124, 58, 237, 0.2),
-        inset 0 0 20px rgba(124, 58, 237, 0.1);
+      box-shadow: 0 0 20px rgba(124,58,237,0.2), inset 0 0 20px rgba(124,58,237,0.1);
     }
 
     .dropdown-header.active {
       border-color: var(--neon1);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-      box-shadow: 
-        0 0 30px rgba(124, 58, 237, 0.3),
-        inset 0 0 30px rgba(124, 58, 237, 0.15);
+      box-shadow: 0 0 30px rgba(124,58,237,0.3), inset 0 0 30px rgba(124,58,237,0.15);
     }
 
-    .dropdown-arrow {
-      transition: transform 0.3s ease;
-      color: var(--neon2);
-      font-size: 12px;
-    }
-
-    .dropdown-header.active .dropdown-arrow {
-      transform: rotate(180deg);
-      color: var(--neon1);
-    }
+    .dropdown-arrow { transition: transform 0.3s ease; color: var(--neon2); font-size: 12px; }
+    .dropdown-header.active .dropdown-arrow { transform: rotate(180deg); color: var(--neon1); }
 
     .dropdown-options {
       position: fixed;
@@ -817,8 +820,8 @@
       transform: translateX(-50%);
       width: 90vw;
       max-width: 400px;
-      background: rgba(0, 0, 0, 0.95);
-      border: 1px solid rgba(124, 58, 237, 0.3);
+      background: rgba(0,0,0,0.95);
+      border: 1px solid rgba(124,58,237,0.3);
       border-top: none;
       border-bottom-left-radius: 12px;
       border-bottom-right-radius: 12px;
@@ -827,37 +830,22 @@
       transition: max-height 0.4s cubic-bezier(0.65, 0, 0.35, 1);
       z-index: 10002;
       backdrop-filter: blur(20px);
-      box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.8),
-        0 0 40px rgba(124, 58, 237, 0.2);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(124,58,237,0.2);
       -webkit-overflow-scrolling: touch;
     }
 
-    .dropdown-options.active {
-      max-height: 60vh;
-      overflow-y: auto;
-    }
+    .dropdown-options.active { max-height: 60vh; overflow-y: auto; }
 
-    .dropdown-options::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .dropdown-options::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 3px;
-    }
-
-    .dropdown-options::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, var(--neon1), var(--neon2));
-      border-radius: 3px;
-    }
+    .dropdown-options::-webkit-scrollbar { width: 6px; }
+    .dropdown-options::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
+    .dropdown-options::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--neon1), var(--neon2)); border-radius: 3px; }
 
     .dropdown-option {
       padding: 14px 16px;
       color: #eaf2ff;
       cursor: pointer;
       transition: all 0.25s ease;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
       position: relative;
       display: flex;
       align-items: center;
@@ -865,40 +853,26 @@
       font-size: 16px;
     }
 
-    .dropdown-option:last-child {
-      border-bottom: none;
-    }
+    .dropdown-option:last-child { border-bottom: none; }
 
     .dropdown-option:hover {
-      background: linear-gradient(90deg, 
-        rgba(124, 58, 237, 0.15), 
-        rgba(6, 182, 212, 0.1)
-      );
+      background: linear-gradient(90deg, rgba(124,58,237,0.15), rgba(6,182,212,0.1));
       padding-left: 20px;
       transform: translateX(4px);
     }
 
     .dropdown-option.selected {
-      background: linear-gradient(90deg, 
-        rgba(124, 58, 237, 0.25), 
-        rgba(6, 182, 212, 0.2)
-      );
+      background: linear-gradient(90deg, rgba(124,58,237,0.25), rgba(6,182,212,0.2));
       color: white;
       font-weight: 600;
     }
 
     .dropdown-option.selected::before {
-      content: '✓';
+      content: 'v';
       color: var(--neon2);
       font-weight: bold;
       position: absolute;
       left: 16px;
-      animation: checkPulse 2s infinite;
-    }
-
-    @keyframes checkPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
     }
 
     .size-indicator {
@@ -921,52 +895,25 @@
     .size-xl { background: linear-gradient(135deg, #a78bfa, #8b5cf6); }
     .size-xxl { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
 
-    .dropdown-label {
-      flex: 1;
-      font-size: 14px;
-    }
+    .dropdown-label { flex: 1; font-size: 14px; }
 
-    .dropdown-tag {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--muted);
-    }
-
-    /* Neon glow effect for dropdown */
     .dropdown-glow {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, 
-        transparent, 
-        var(--neon1), 
-        var(--neon2), 
-        transparent
-      );
+      background: linear-gradient(90deg, transparent, var(--neon1), var(--neon2), transparent);
       filter: blur(4px);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
 
     .dropdown-header:hover .dropdown-glow,
-    .dropdown-header.active .dropdown-glow {
-      opacity: 0.8;
-    }
+    .dropdown-header.active .dropdown-glow { opacity: 0.8; }
 
-    .form-row {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .form-row .form-group {
-      flex: 1;
-      width: 100%;
-    }
+    .form-row { display: flex; flex-direction: column; gap: 12px; }
+    .form-row .form-group { flex: 1; width: 100%; }
 
     .order-actions {
       display: flex;
@@ -991,10 +938,7 @@
       width: 100%;
     }
 
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.05);
-      transform: translateY(-2px);
-    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.05); transform: translateY(-2px); }
 
     .btn-whatsapp {
       background: linear-gradient(90deg, var(--neon1), var(--neon2));
@@ -1014,23 +958,11 @@
       width: 100%;
     }
 
-    .btn-whatsapp:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(124,58,237,0.3);
-    }
+    .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(124,58,237,0.3); }
 
-    .error-message {
-      color: #ff4d6d;
-      font-size: 12px;
-      margin-top: 4px;
-      display: none;
-    }
+    .error-message { color: #ff4d6d; font-size: 12px; margin-top: 4px; display: none; }
+    .error-message.visible { display: block; }
 
-    .error-message.visible {
-      display: block;
-    }
-
-    /* Customization options for all products */
     .customization-options {
       display: none;
       margin-top: 16px;
@@ -1040,20 +972,11 @@
       border: 1px solid rgba(255,255,255,0.05);
     }
 
-    .customization-options.active {
-      display: block;
-    }
+    .customization-options.active { display: block; }
 
-    .design-options, .color-options, .style-options, .material-options {
-      margin-bottom: 16px;
-    }
+    .design-options, .color-options, .style-options, .material-options { margin-bottom: 16px; }
 
-    .option-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--muted);
-    }
+    .option-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--muted); }
 
     .design-grid, .color-grid, .style-grid, .material-grid {
       display: grid;
@@ -1092,21 +1015,9 @@
       z-index: 1;
     }
 
-    .design-option:hover::before {
-      background: rgba(0,0,0,0.3);
-    }
-
-    .design-option.selected::before {
-      background: rgba(124,58,237,0.5);
-      box-shadow: 0 0 0 2px rgba(124,58,237,0.8);
-    }
-
-    .design-option > span {
-      position: relative;
-      z-index: 2;
-      font-size: 12px;
-      word-break: break-word;
-    }
+    .design-option:hover::before { background: rgba(0,0,0,0.3); }
+    .design-option.selected::before { background: rgba(124,58,237,0.5); box-shadow: 0 0 0 2px rgba(124,58,237,0.8); }
+    .design-option > span { position: relative; z-index: 2; font-size: 12px; word-break: break-word; }
 
     .color-option, .style-option, .material-option {
       padding: 12px;
@@ -1140,7 +1051,6 @@
       border: 1px solid rgba(255,255,255,0.2);
     }
 
-    /* Gallery tile styling */
     .gallery {
       display: grid;
       grid-template-columns: 1fr;
@@ -1183,16 +1093,9 @@
     }
 
     .tile:hover .tile-overlay,
-    .tile:focus-within .tile-overlay {
-      opacity: 1;
-    }
+    .tile:focus-within .tile-overlay { opacity: 1; }
 
-    .tile-label {
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: white;
-      font-size: 18px;
-    }
+    .tile-label { font-weight: 700; letter-spacing: 1px; color: white; font-size: 18px; }
 
     .order-btn {
       display: inline-flex;
@@ -1212,15 +1115,12 @@
       font-size: 14px;
     }
 
-    .order-btn:hover { 
-      transform: translateY(-6px); 
-      box-shadow: 0 18px 38px rgba(124,58,237,0.12);
-    }
+    .order-btn:hover { transform: translateY(-6px); box-shadow: 0 18px 38px rgba(124,58,237,0.12); }
 
     .order-btn.primary {
-      background: linear-gradient(90deg,var(--neon1),var(--neon2));
-      color:#030313;
-      border:none;
+      background: linear-gradient(90deg, var(--neon1), var(--neon2));
+      color: #030313;
+      border: none;
       box-shadow: 0 12px 40px rgba(124,58,237,0.16);
     }
 
@@ -1232,13 +1132,8 @@
       transform: translateZ(0);
     }
 
-    .order-chip .order-btn {
-      padding: 8px 12px;
-      font-size: 12px;
-      min-height: 36px;
-    }
+    .order-chip .order-btn { padding: 8px 12px; font-size: 12px; min-height: 36px; }
 
-    /* Product price display */
     #productPrice {
       margin-top: 8px;
       font-size: clamp(18px, 5vw, 20px);
@@ -1247,72 +1142,29 @@
       display: none;
     }
 
-    /* Show parallax on larger screens only */
     @media (min-width: 768px) {
-      .layer, .ring {
-        display: block;
-      }
-      
-      .parallax {
-        display: block;
-      }
-    }
+      .layer, .ring { display: block; }
+      .parallax { display: block; }
 
-    /* ------------------------------------------------------------ */
-    /*              RESPONSIVE MEDIA QUERIES                       */
-    /* ------------------------------------------------------------ */
+      .hero { flex-direction: row; gap: 36px; margin-top: 36px; }
+      .card { padding: 32px; }
 
-    @media (min-width: 768px) {
-      .hero {
-        flex-direction: row;
-        gap: 36px;
-        margin-top: 36px;
-      }
-      
-      .card {
-        padding: 32px;
-      }
-      
-      .cta-row {
-        flex-direction: row;
-        gap: 12px;
-      }
-      
-      .cta-row .btn {
-        width: auto;
-      }
-      
-      .features {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-      
-      .feature {
-        flex: 1 1 calc(50% - 12px);
-        min-width: 200px;
-      }
-      
-      .gallery {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 16px;
-      }
-      
-      .tile {
-        height: 200px;
-      }
-      
-      .form-row {
-        flex-direction: row;
-      }
-      
-      .order-actions {
-        flex-direction: row;
-      }
-      
-      .order-actions button {
-        width: auto;
-      }
-      
+      .cta-row { flex-direction: row; gap: 12px; }
+      .cta-row .btn { width: auto; }
+
+      /* On desktop, left-align the secondary buttons */
+      .cta-row-secondary { justify-content: flex-start; }
+
+      .features { flex-direction: row; flex-wrap: wrap; }
+      .feature { flex: 1 1 calc(50% - 12px); min-width: 200px; }
+
+      .gallery { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+      .tile { height: 200px; }
+
+      .form-row { flex-direction: row; }
+      .order-actions { flex-direction: row; }
+      .order-actions button { width: auto; }
+
       .dropdown-options {
         position: absolute;
         top: 100%;
@@ -1325,54 +1177,21 @@
     }
 
     @media (min-width: 1024px) {
-      .hero {
-        grid-template-columns: 1fr 420px;
-        display: grid;
-      }
-      
-      .features {
-        flex-direction: row;
-      }
-      
-      .feature {
-        flex: 1 1 160px;
-      }
-      
-      .gallery {
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      }
-      
-      .form-row {
-        gap: 16px;
-      }
-      
-      .order-actions {
-        gap: 12px;
-      }
+      .hero { grid-template-columns: 1fr 420px; display: grid; }
+      .features { flex-direction: row; }
+      .feature { flex: 1 1 160px; }
+      .gallery { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+      .form-row { gap: 16px; }
+      .order-actions { gap: 12px; }
     }
 
     @media (max-width: 480px) {
-      .wrap {
-        padding: 12px !important;
-        margin: 12px auto;
-      }
-      
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-      
-      .brand {
-        flex-direction: row;
-        gap: 8px;
-      }
-      
-      .logo {
-        width: 48px;
-        height: 48px;
-      }
-      
+      .wrap { padding: 12px !important; margin: 12px auto; }
+
+      header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .brand { flex-direction: row; gap: 8px; }
+      .logo { width: 48px; height: 48px; }
+
       nav {
         width: 100%;
         overflow-x: auto;
@@ -1381,86 +1200,50 @@
         gap: 6px;
         justify-content: space-between;
       }
-      
-      .nav-link {
-        padding: 8px 10px;
-        font-size: 14px;
-        white-space: nowrap;
-        flex-shrink: 0;
+
+      .nav-link { padding: 8px 10px; font-size: 14px; white-space: nowrap; flex-shrink: 0; }
+
+      h1 { font-size: 24px !important; }
+      .tag, .badge { font-size: 10px; padding: 4px 6px; }
+      .phone { max-width: 200px; }
+      .design-grid { grid-template-columns: 1fr !important; }
+
+      #orderModal { padding: 8px !important; }
+      .order-panel { padding: 16px !important; margin: 8px auto !important; }
+
+      .countdown-container { padding: 8px 12px; }
+      .countdown-value { font-size: 18px; }
+      .countdown-unit { min-width: 40px; }
+
+      /* Centre the secondary buttons on mobile */
+      .cta-row-secondary {
+        justify-content: center;
+        margin-top: 32px;
       }
-      
-      h1 {
-        font-size: 24px !important;
-      }
-      
-      .tag, .badge {
-        font-size: 10px;
-        padding: 4px 6px;
-      }
-      
-      .phone {
-        max-width: 200px;
-      }
-      
-      .design-grid {
-        grid-template-columns: 1fr !important;
-      }
-      
-      #orderModal {
-        padding: 8px !important;
-      }
-      
-      .order-panel {
-        padding: 16px !important;
-        margin: 8px auto !important;
-      }
-      
-      .countdown-container {
-        padding: 8px 12px;
-      }
-      
-      .countdown-value {
-        font-size: 18px;
-      }
-      
-      .countdown-unit {
-        min-width: 40px;
+
+      .cta-row-secondary .btn {
+        max-width: 160px;
+        font-size: 13px;
+        padding: 12px 14px;
       }
     }
 
     @media (max-width: 320px) {
-      .nav-link {
-        padding: 6px 8px;
+      .nav-link { padding: 6px 8px; font-size: 12px; }
+      .btn { padding: 10px 12px; font-size: 14px; }
+      h1 { font-size: 20px !important; }
+      .phone { max-width: 180px; }
+      .countdown-container { gap: 4px; }
+      .countdown-unit { min-width: 35px; }
+      .countdown-value { font-size: 16px; }
+
+      .cta-row-secondary .btn {
+        max-width: 140px;
         font-size: 12px;
-      }
-      
-      .btn {
-        padding: 10px 12px;
-        font-size: 14px;
-      }
-      
-      h1 {
-        font-size: 20px !important;
-      }
-      
-      .phone {
-        max-width: 180px;
-      }
-      
-      .countdown-container {
-        gap: 4px;
-      }
-      
-      .countdown-unit {
-        min-width: 35px;
-      }
-      
-      .countdown-value {
-        font-size: 16px;
+        padding: 10px 10px;
       }
     }
 
-    /* Accessibility focus styles */
     a:focus, button:focus, input:focus, .dropdown-header:focus {
       outline: 2px dashed rgba(124,58,237,0.35);
       outline-offset: 4px;
@@ -1469,7 +1252,6 @@
 </head>
 <body>
 
-  <!-- Space background elements -->
   <div class="stars-bg" id="starsBackground"></div>
 
   <!-- ORDER MODAL -->
@@ -1484,7 +1266,6 @@
         <div class="form-group">
           <label class="form-label" for="product">Product</label>
           <input type="text" id="product" class="form-control" readonly>
-          <!-- Add price display here -->
           <div id="productPrice" style="margin-top: 8px; font-size: 20px; font-weight: 700; color: var(--neon2); display: none;">
             Price: <span id="priceValue">KES 0</span>
           </div>
@@ -1494,7 +1275,7 @@
           <div class="form-group">
             <label class="form-label" for="size">Size</label>
             <div class="custom-dropdown" id="sizeDropdown">
-              <div class="dropdown-header" id="dropdownHeader">
+              <div class="dropdown-header" id="dropdownHeader" tabindex="0">
                 <span id="selectedSize">Choose your size</span>
                 <div class="dropdown-glow"></div>
                 <span class="dropdown-arrow">▼</span>
@@ -1537,40 +1318,23 @@
           </div>
         </div>
 
-        <!-- Customization options for all products -->
         <div id="customizationOptions" class="customization-options">
           <!-- HOODIES -->
           <div id="hoodieOptions" class="product-options">
             <div class="design-options">
               <div class="option-title">Choose Design</div>
               <div class="design-grid">
-                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')">
-                  <span>CLAIM YOUR SPACE</span>
-                </div>
-                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')">
-                  <span>Better Days</span>
-                </div>
-                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')">
-                  <span>Garden Design</span>
-                </div>
-                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')">
-                  <span>Welcome To Our Universe!!</span>
-                </div>
+                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')"><span>CLAIM YOUR SPACE</span></div>
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')"><span>Better Days</span></div>
+                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')"><span>Garden Design</span></div>
+                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')"><span>Welcome To Our Universe!!</span></div>
               </div>
             </div>
-            
             <div class="color-options">
               <div class="option-title">Choose Color</div>
               <div class="color-grid">
-                <div class="color-option" data-color="Black">
-                  <span class="color-swatch" style="background-color: #000;"></span>
-                  Black
-                </div>
-
-                <div class="color-option" data-color="Burgundy">
-                  <span class="color-swatch" style="background-color: #f9f9f9;"></span>
-                  white
-                </div>
+                <div class="color-option" data-color="Black"><span class="color-swatch" style="background-color: #000;"></span>Black</div>
+                <div class="color-option" data-color="Burgundy"><span class="color-swatch" style="background-color: #f9f9f9;"></span>White</div>
               </div>
             </div>
           </div>
@@ -1580,63 +1344,36 @@
             <div class="design-options">
               <div class="option-title">Choose Design</div>
               <div class="design-grid">
-                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')">
-                  <span>CLAIM YOUR SPACE</span>
-                </div>
-                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')">
-                  <span>Better Days</span>
-                </div>
-                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')">
-                  <span>Garden Design</span>
-                </div>
-                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')">
-                  <span>Welcome To Our Universe!!</span>
-                </div>
+                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')"><span>CLAIM YOUR SPACE</span></div>
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')"><span>Better Days</span></div>
+                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')"><span>Garden Design</span></div>
+                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')"><span>Welcome To Our Universe!!</span></div>
               </div>
             </div>
-            
             <div class="color-options">
               <div class="option-title">Choose Color</div>
               <div class="color-grid">
-                <div class="color-option" data-color="Forest Green">
-                  <span class="color-swatch" style="background-color: #000000;"></span>
-                  Black
-                </div>
+                <div class="color-option" data-color="Forest Green"><span class="color-swatch" style="background-color: #000000;"></span>Black</div>
               </div>
             </div>
           </div>
 
-          <!-- T-SHIRTS (no sale styling) -->
+          <!-- T-SHIRTS -->
           <div id="tshirtOptions" class="product-options">
             <div class="style-options">
               <div class="option-title">Choose Style</div>
               <div class="style-grid">
-                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')">
-                  <span>CLAIM YOUR SPACE</span>
-                </div>
-                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')">
-                  <span>Better Days</span>
-                </div>
-                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')">
-                  <span>Garden Design</span>
-                </div>
-                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')">
-                  <span>Welcome To Our Universe!!</span>
-                </div>
+                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/cys.png')"><span>CLAIM YOUR SPACE</span></div>
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/betterdays.png')"><span>Better Days</span></div>
+                <div class="design-option" data-design="Star Pattern" style="background-image: url('images/garden.png')"><span>Garden Design</span></div>
+                <div class="design-option" data-design="Minimalist" style="background-image: url('images/WTOU.png')"><span>Welcome To Our Universe!!</span></div>
               </div>
             </div>
-            
             <div class="color-options">
               <div class="option-title">Choose Color</div>
               <div class="color-grid">
-                <div class="color-option" data-color="White">
-                  <span class="color-swatch" style="background-color: #ffffff;"></span>
-                  White
-                </div>
-                <div class="color-option" data-color="Black">
-                  <span class="color-swatch" style="background-color: #000;"></span>
-                  Black
-                </div>
+                <div class="color-option" data-color="White"><span class="color-swatch" style="background-color: #ffffff;"></span>White</div>
+                <div class="color-option" data-color="Black"><span class="color-swatch" style="background-color: #000;"></span>Black</div>
               </div>
             </div>
           </div>
@@ -1646,30 +1383,16 @@
             <div class="design-options">
               <div class="option-title">Choose Design</div>
               <div class="design-grid">
-                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/grafitti.png')">
-                  <span>Graffiti design</span>
-                </div>
-                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/WTU.png')">
-                  <span>WTU Design</span>
-                </div>
+                <div class="design-option" data-design="Galaxy Print" style="background-image: url('images/grafitti.png')"><span>Graffiti design</span></div>
+                <div class="design-option" data-design="Neon Outline" style="background-image: url('images/WTU.png')"><span>WTU Design</span></div>
               </div>
             </div>
-            
             <div class="color-options">
               <div class="option-title">Choose Color</div>
               <div class="color-grid">
-                <div class="color-option" data-color="Black">
-                  <span class="color-swatch" style="background-color: #000;"></span>
-                  Black on Black
-                </div>
-                <div class="color-option" data-color="Navy">
-                  <span class="color-swatch" style="background-color: #ffffff;"></span>
-                  White on Black
-                </div>
-                <div class="color-option" data-color="Forest Green">
-                  <span class="color-swatch" style="background-color: #e74482;"></span>
-                  White on Pink
-                </div>
+                <div class="color-option" data-color="Black"><span class="color-swatch" style="background-color: #000;"></span>Black on Black</div>
+                <div class="color-option" data-color="Navy"><span class="color-swatch" style="background-color: #ffffff;"></span>White on Black</div>
+                <div class="color-option" data-color="Forest Green"><span class="color-swatch" style="background-color: #e74482;"></span>White on Pink</div>
               </div>
             </div>
           </div>
@@ -1677,18 +1400,13 @@
 
         <div class="order-actions">
           <button type="button" class="btn-secondary" id="cancelOrder">Cancel</button>
-          <button type="button" class="btn-whatsapp" id="sendToWhatsApp">
-            Book your order ⭐!
-          </button>
+          <button type="button" class="btn-whatsapp" id="sendToWhatsApp">Book your order!</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- --------------------------------------------- -->
-  <!-- ORIGINAL PAGE CONTENT BELOW -->
-  <!-- --------------------------------------------- -->
-
+  <!-- PARALLAX -->
   <div class="parallax" id="parallax">
     <div class="layer" style="left:-10%;top:5%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,0.16), transparent 20%), radial-gradient(circle at 70% 70%, rgba(6,182,212,0.10), transparent 30%);filter:blur(40px);transform:translateZ(0)"></div>
     <div class="layer" style="right:-6%;bottom:10%;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle at 20% 10%, rgba(255,77,109,0.12), transparent 18%), radial-gradient(circle at 80% 80%, rgba(6,182,212,0.06), transparent 30%);filter:blur(30px);transform:translateZ(0)"></div>
@@ -1722,9 +1440,7 @@
         </div>
 
         <h1 class="fade-up" data-delay="0.1">
-          <img src="images/logo.png"
-              alt="STARS"
-              style="height:clamp(40px,8vw,60px);width:auto;object-fit:contain;">
+          <img src="images/logo.png" alt="STARS" style="height:clamp(40px,8vw,60px);width:auto;object-fit:contain;">
           <span>— <span class="accent">WELCOME TO THE UNIVERSE!!!</span></span>
         </h1>
 
@@ -1736,10 +1452,18 @@
           <div class="feature fade-up" data-delay="0.5"><strong>Quality</strong><div class="muted">Sustainably sourced materials</div></div>
         </div>
 
+        <!-- Original CTA row: Contact + Learn More -->
         <div class="cta-row fade-up" data-delay="0.6">
           <a class="btn primary" href="https://wa.me/254745151478" target="_blank">Contact</a>
           <a class="btn" href="#about">Learn more</a>
         </div>
+
+        <!-- Secondary CTA row: View Collections + NOVA — separated with extra top margin, centred on mobile -->
+        <div class="cta-row-secondary fade-up" data-delay="0.75">
+          <a class="btn btn-ghost" href="#collection" id="viewCollectionsBtn">View Collections</a>
+          <a class="btn btn-nova" href="#" id="novaBtn" target="_blank">NOVA</a>
+        </div>
+
       </div>
 
       <aside class="mock card fade-up float" data-delay="0.5">
@@ -1747,7 +1471,7 @@
           <div style="width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,var(--neon1),var(--neon2));box-shadow:0 8px 24px rgba(124,58,237,0.14)"></div>
           <div class="muted" style="font-size:14px">STARS App Preview</div>
           <div style="flex:1"></div>
-          <div class="muted" style="font-size:14px">Live • <span id="liveCounter" style="display:inline-block;min-width:30px;text-align:center;font-size:14px">289</span> online</div>
+          <div class="muted" style="font-size:14px">Live - <span id="liveCounter" style="display:inline-block;min-width:30px;text-align:center;font-size:14px">289</span> online</div>
         </div>
 
         <div class="phone">
@@ -1757,7 +1481,7 @@
                 <img src="images/comingsoon.png" alt="Neon Hoodie" style="width:100%;height:100%;object-fit:cover;filter:drop-shadow(0 0 8px var(--neon1));animation:float 4s ease-in-out infinite;">
               </div>
               <div style="font-weight:800;font-size:16px;letter-spacing:0.5px">LIMITED EDITION</div>
-              <div class="muted" style="font-size:12px">Coming Soon • Black</div>
+              <div class="muted" style="font-size:12px">Coming Soon - Black</div>
             </div>
           </div>
         </div>
@@ -1766,19 +1490,7 @@
 
     <div class="neon-line"></div>
 
-    <section id="about" style="margin-top:24px">
-      <div class="card fade-up" data-delay="0.2">
-        <h2 style="margin:0 0 6px;font-size:clamp(20px,5vw,24px)">About STARS</h2>
-        <p class="muted">STARS began as a small collective in May 2024. We design clothing that helps you stand out — through bold shapes and community-led drops. Our mission is to make youth feel proud and seen.</p>
-        <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
-          <div class="badge">EST May 2024</div>
-          <div class="badge">Collaborations</div>
-          <div class="badge">Limited Drops</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURED COLLECTION -->
+    <!-- COLLECTION -->
     <section id="collection" style="margin-top:32px;">
       <h2 style="margin:0 0 14px;font-family:Orbitron,Inter;letter-spacing:1px;font-size:clamp(20px,5vw,24px);">Our Collection</h2>
 
@@ -1787,6 +1499,11 @@
           <div class="tile-content" style="background-image:url('images/hoodie.jpg');">
             <div class="tile-overlay">
               <h2 style="margin:0;font-size:clamp(18px,5vw,24px)">HOODIES</h2>
+              <div class="collection-price">
+                <span class="old-price">KES 2,846</span>
+                <span class="price-divider">→</span>
+                <span class="new-price">KES 2,500</span>
+              </div>
               <div class="order-chip">
                 <button class="order-btn" data-product="HOODIES">Order Now</button>
               </div>
@@ -1798,6 +1515,11 @@
           <div class="tile-content" style="background-image:url('images/sweatshirt.jpg');">
             <div class="tile-overlay">
               <h2 style="margin:0;font-size:clamp(18px,5vw,24px)">SWEATSHIRTS</h2>
+              <div class="collection-price">
+                <span class="old-price">KES 2,500</span>
+                <span class="price-divider">→</span>
+                <span class="new-price">KES 2,100</span>
+              </div>
               <div class="order-chip">
                 <button class="order-btn" data-product="SWEATSHIRTS">Order Now</button>
               </div>
@@ -1805,11 +1527,15 @@
           </div>
         </div>
 
-        <!-- T-SHIRT TILE (no sale styling) -->
         <div class="tile fade-up" data-delay="0.35" tabindex="0" aria-label="T-Shirts">
           <div class="tile-content" style="background-image:url('images/tshirt.jpg');">
             <div class="tile-overlay">
               <h2 style="margin:0;font-size:clamp(18px,5vw,24px)">T-SHIRTS</h2>
+              <div class="collection-price">
+                <span class="old-price">KES 1,500</span>
+                <span class="price-divider">→</span>
+                <span class="new-price">KES 1,199</span>
+              </div>
               <div class="order-chip">
                 <button class="order-btn primary" data-product="T-SHIRTS">Order Now</button>
               </div>
@@ -1821,11 +1547,29 @@
           <div class="tile-content" style="background-image:url('images/caps.jpg');">
             <div class="tile-overlay">
               <h2 style="margin:0;font-size:clamp(18px,5vw,24px)">TRUCKER HATS</h2>
+              <div class="collection-price">
+                <span class="old-price">KES 800</span>
+                <span class="price-divider">→</span>
+                <span class="new-price">KES 400</span>
+              </div>
               <div class="order-chip">
                 <button class="order-btn" data-product="TRUCKER HATS">Order Now</button>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" style="margin-top:32px;">
+      <div class="card fade-up" data-delay="0.2">
+        <h2 style="margin:0 0 6px;font-size:clamp(20px,5vw,24px)">About STARS</h2>
+        <p class="muted">STARS began as a small collective in May 2024. We design clothing that helps you stand out — through bold shapes and community-led drops. Our mission is to make youth feel proud and seen.</p>
+        <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+          <div class="badge">EST May 2024</div>
+          <div class="badge">Collaborations</div>
+          <div class="badge">Limited Drops</div>
         </div>
       </div>
     </section>
@@ -1837,258 +1581,154 @@
   </div>
 
   <script>
-    // ------------------------------------------------------------
-    //                 MOBILE VIEWPORT FIXES
-    // ------------------------------------------------------------
-    
-    // Fix for mobile viewport height
+    // Viewport height fix
     function setVH() {
       let vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
-    
-    // Initialize
     setVH();
     window.addEventListener('resize', setVH);
     window.addEventListener('orientationchange', setVH);
-    
-    // Prevent double-tap zoom on mobile
+
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function(event) {
       const now = (new Date()).getTime();
-      if (now - lastTouchEnd <= 300) {
-        event.preventDefault();
-      }
+      if (now - lastTouchEnd <= 300) event.preventDefault();
       lastTouchEnd = now;
     }, false);
-    
-    // Prevent pull-to-refresh overscroll on iOS
+
     document.body.addEventListener('touchmove', function(e) {
-      if (e.target.closest('.order-panel, .dropdown-options')) {
-        e.stopPropagation();
-      }
+      if (e.target.closest('.order-panel, .dropdown-options')) e.stopPropagation();
     }, { passive: true });
 
-    // ------------------------------------------------------------
-    //                 SPACE BACKGROUND CREATION
-    // ------------------------------------------------------------
+    // -----------------------------------------------
+    // VIEW COLLECTIONS: smooth scroll to #collection
+    // -----------------------------------------------
+    document.getElementById('viewCollectionsBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.getElementById('collection');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    // -----------------------------------------------
+    // SPACE BACKGROUND
+    // -----------------------------------------------
     function createSpaceBackground() {
       const starsContainer = document.getElementById('starsBackground');
       if (!starsContainer) return;
-      
-      // Create static stars
       createStars(starsContainer);
-      
-      // Create nebula clouds
       createNebulas(starsContainer);
-      
-      // Start shooting stars
       startShootingStars(starsContainer);
     }
 
     function createStars(container) {
-      const starCount = window.innerWidth < 768 ? 80 : 150; // Fewer stars on mobile for performance
-      
+      const starCount = window.innerWidth < 768 ? 80 : 150;
       for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
         star.className = 'star';
-        
-        // Random size
         const sizeRand = Math.random();
-        if (sizeRand < 0.7) {
-          star.classList.add('small');
-        } else if (sizeRand < 0.9) {
-          star.classList.add('medium');
-        } else {
-          star.classList.add('large');
-        }
-        
-        // Occasionally add colored stars (neon-themed)
+        if (sizeRand < 0.7) star.classList.add('small');
+        else if (sizeRand < 0.9) star.classList.add('medium');
+        else star.classList.add('large');
         const colorRand = Math.random();
-        if (colorRand < 0.1) {
-          star.classList.add('neon1');
-        } else if (colorRand < 0.15) {
-          star.classList.add('neon2');
-        } else if (colorRand < 0.2) {
-          star.classList.add('neon3');
-        }
-        
-        // Random position
+        if (colorRand < 0.1) star.classList.add('neon1');
+        else if (colorRand < 0.15) star.classList.add('neon2');
+        else if (colorRand < 0.2) star.classList.add('neon3');
         star.style.left = `${Math.random() * 100}%`;
         star.style.top = `${Math.random() * 100}%`;
-        
-        // Random twinkle duration
         const duration = 3 + Math.random() * 7;
         star.style.setProperty('--twinkle-duration', `${duration}s`);
         star.style.animationDelay = `${Math.random() * 5}s`;
-        
         container.appendChild(star);
       }
     }
 
     function createNebulas(container) {
-      // Create 3-5 nebula clouds
       const nebulaCount = window.innerWidth < 768 ? 2 : 3 + Math.floor(Math.random() * 3);
-      
       for (let i = 0; i < nebulaCount; i++) {
         const nebula = document.createElement('div');
         nebula.className = 'nebula';
-        
-        // Random color
         const colors = ['purple', 'cyan', 'pink'];
         nebula.classList.add(colors[Math.floor(Math.random() * colors.length)]);
-        
-        // Random size and position
         const size = window.innerWidth < 768 ? 100 + Math.random() * 200 : 200 + Math.random() * 400;
         nebula.style.width = `${size}px`;
         nebula.style.height = `${size}px`;
         nebula.style.left = `${Math.random() * 100}%`;
         nebula.style.top = `${Math.random() * 100}%`;
         nebula.style.opacity = `${0.02 + Math.random() * 0.03}`;
-        
         container.appendChild(nebula);
       }
     }
 
     function startShootingStars(container) {
-      // Create shooting stars at random intervals
       function createShootingStar() {
-        // Reduce shooting stars on mobile for performance
         if (window.innerWidth < 768 && Math.random() < 0.7) return;
-        
         const shootingStar = document.createElement('div');
         shootingStar.className = 'shooting-star';
-        
-        // Randomize appearance for realism
-        const starSize = 1 + Math.random() * 2; // 1-3px height
-        const starLength = 60 + Math.random() * 100; // 60-160px length
-        const opacity = 0.7 + Math.random() * 0.3; // 0.7-1 opacity
-        
+        const starSize = 1 + Math.random() * 2;
+        const starLength = 60 + Math.random() * 100;
         shootingStar.style.height = `${starSize}px`;
         shootingStar.style.width = `${starLength}px`;
-        shootingStar.style.opacity = opacity;
-        
-        // More realistic trail with gradient
         const neonChoice = Math.random();
         let gradientColors;
-        
         if (neonChoice < 0.3) {
-          // Purple/blue trail
-          gradientColors = [
-            'rgba(255, 255, 255, 0) 0%',
-            'rgba(255, 255, 255, 0.9) 20%',
-            'rgba(124, 58, 237, 0.8) 50%',
-            'rgba(6, 182, 212, 0.6) 70%',
-            'rgba(6, 182, 212, 0) 100%'
-          ];
+          gradientColors = ['rgba(255,255,255,0) 0%','rgba(255,255,255,0.9) 20%','rgba(124,58,237,0.8) 50%','rgba(6,182,212,0.6) 70%','rgba(6,182,212,0) 100%'];
         } else if (neonChoice < 0.6) {
-          // Cyan/blue trail
-          gradientColors = [
-            'rgba(255, 255, 255, 0) 0%',
-            'rgba(255, 255, 255, 0.9) 20%',
-            'rgba(6, 182, 212, 0.8) 50%',
-            'rgba(124, 58, 237, 0.6) 70%',
-            'rgba(124, 58, 237, 0) 100%'
-          ];
+          gradientColors = ['rgba(255,255,255,0) 0%','rgba(255,255,255,0.9) 20%','rgba(6,182,212,0.8) 50%','rgba(124,58,237,0.6) 70%','rgba(124,58,237,0) 100%'];
         } else {
-          // Pink/purple trail
-          gradientColors = [
-            'rgba(255, 255, 255, 0) 0%',
-            'rgba(255, 255, 255, 0.9) 20%',
-            'rgba(255, 77, 109, 0.8) 50%',
-            'rgba(124, 58, 237, 0.6) 70%',
-            'rgba(124, 58, 237, 0) 100%'
-          ];
+          gradientColors = ['rgba(255,255,255,0) 0%','rgba(255,255,255,0.9) 20%','rgba(255,77,109,0.8) 50%','rgba(124,58,237,0.6) 70%','rgba(124,58,237,0) 100%'];
         }
-        
         shootingStar.style.background = `linear-gradient(90deg, ${gradientColors.join(', ')})`;
-        
-        // Random starting position - more likely from top for realism
         const startSide = Math.random();
         let startX, startY, angle;
-        
-        if (startSide < 0.8) { // 80% start from top (more realistic)
-          startX = Math.random() * 120 - 10; // -10% to 110%
+        if (startSide < 0.8) {
+          startX = Math.random() * 120 - 10;
           startY = -20;
-          angle = -30 + Math.random() * 60; // -30 to 30 degrees
-        } else { // 20% from sides
+          angle = -30 + Math.random() * 60;
+        } else {
           if (Math.random() < 0.5) {
-            startX = -20;
-            startY = Math.random() * 120 - 10;
-            angle = 15 + Math.random() * 40; // 15 to 55 degrees
+            startX = -20; startY = Math.random() * 120 - 10; angle = 15 + Math.random() * 40;
           } else {
-            startX = 120;
-            startY = Math.random() * 120 - 10;
-            angle = -55 + Math.random() * 40; // -55 to -15 degrees
+            startX = 120; startY = Math.random() * 120 - 10; angle = -55 + Math.random() * 40;
           }
         }
-        
         shootingStar.style.left = `${startX}%`;
         shootingStar.style.top = `${startY}%`;
         shootingStar.style.setProperty('--shooting-angle', `${angle}deg`);
-        
-        // Random distance - longer for more dramatic effect
         const distance = 800 + Math.random() * 1200;
         const distanceX = Math.cos(angle * Math.PI / 180) * distance;
         const distanceY = Math.sin(angle * Math.PI / 180) * distance;
-        
         shootingStar.style.setProperty('--shooting-distance-x', `${distanceX}px`);
         shootingStar.style.setProperty('--shooting-distance-y', `${distanceY}px`);
-        
-        // Random duration - faster for realism
-        const duration = 0.8 + Math.random() * 1.2; // 0.8-2 seconds
+        const duration = 0.8 + Math.random() * 1.2;
         shootingStar.style.setProperty('--shooting-duration', `${duration}s`);
-        
-        // Add subtle glow effect
-        shootingStar.style.filter = `blur(${0.5 + Math.random() * 1}px) drop-shadow(0 0 6px currentColor)`;
-        
+        shootingStar.style.filter = `blur(${0.5 + Math.random()}px)`;
         container.appendChild(shootingStar);
-        
-        // Remove after animation completes
-        setTimeout(() => {
-          if (shootingStar.parentNode === container) {
-            container.removeChild(shootingStar);
-          }
-        }, duration * 1200); // Slightly longer than animation
+        setTimeout(() => { if (shootingStar.parentNode === container) container.removeChild(shootingStar); }, duration * 1200);
       }
-      
-      // Create first shooting star after a shorter delay
       setTimeout(() => {
         createShootingStar();
-        
-        // Continue creating shooting stars at MORE FREQUENT intervals
         function scheduleNext() {
-          const delay = window.innerWidth < 768 ? 
-            2000 + Math.random() * 5000 : // 2-7 seconds on mobile (more frequent)
-            1000 + Math.random() * 4000; // 1-5 seconds on desktop (much more frequent)
-          
-          setTimeout(() => {
-            createShootingStar();
-            scheduleNext();
-          }, delay);
+          const delay = window.innerWidth < 768 ? 2000 + Math.random() * 5000 : 1000 + Math.random() * 4000;
+          setTimeout(() => { createShootingStar(); scheduleNext(); }, delay);
         }
-        
         scheduleNext();
-      }, 1000 + Math.random() * 2000); // Start sooner
+      }, 1000 + Math.random() * 2000);
     }
 
-    // Initialize space background when DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
       createSpaceBackground();
-      
-      // Start the counter animation
       setTimeout(updateLiveCounter, 2000);
     });
 
-    // Fade-up animation on scroll
+    // Fade-up observer
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('in-view'); observer.unobserve(entry.target); }
       });
-    }, {threshold: 0.1});
+    }, { threshold: 0.1 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
     // Parallax
@@ -2103,131 +1743,76 @@
       });
     }
 
-    // -----------------------------------
-    // LIVE COUNTER ANIMATION
-    // -----------------------------------
+    // Live counter
     function animateCounter(element, targetValue, duration = 1000) {
       const startValue = parseInt(element.textContent) || 0;
       const startTime = performance.now();
-      
       function update(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smooth animation
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        
-        const currentValue = Math.round(startValue + (targetValue - startValue) * easeOutQuart);
-        element.textContent = currentValue;
-        
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        }
+        element.textContent = Math.round(startValue + (targetValue - startValue) * easeOutQuart);
+        if (progress < 1) requestAnimationFrame(update);
       }
-      
       requestAnimationFrame(update);
     }
 
     function updateLiveCounter() {
       const counterElement = document.getElementById('liveCounter');
       if (!counterElement) return;
-      
-      // Generate random number between 2 and 700
       const randomNumber = Math.floor(Math.random() * (700 - 2 + 1)) + 2;
-      
-      // Animate to new number
-      animateCounter(counterElement, randomNumber, 1500); // 1.5 second animation
-      
-      // Schedule next update (random interval between 2-8 seconds)
-      const nextUpdate = Math.random() * (8000 - 2000) + 2000;
-      setTimeout(updateLiveCounter, nextUpdate);
+      animateCounter(counterElement, randomNumber, 1500);
+      setTimeout(updateLiveCounter, Math.random() * (8000 - 2000) + 2000);
     }
 
-    // -----------------------------------
-    // ORDER MODAL LOGIC
-    // -----------------------------------
+    // ORDER MODAL
     const orderModal = document.getElementById('orderModal');
-    const orderForm = document.getElementById('orderForm');
     const productInput = document.getElementById('product');
     const sizeHiddenInput = document.getElementById('size');
     const quantityInput = document.getElementById('quantity');
     const sizeError = document.getElementById('sizeError');
     const quantityError = document.getElementById('quantityError');
     const customizationOptions = document.getElementById('customizationOptions');
-    
-    // Variables to store selected options for all products
-    let selectedDesign = '';
-    let selectedColor = '';
-    let currentProduct = '';
+    let selectedDesign = '', selectedColor = '', currentProduct = '';
 
-    // Price data for each product
     const productPrices = {
       'HOODIES': 'KES 2,500',
-      'SWEATSHIRTS': 'KES 2,100', 
-      'T-SHIRTS': 'KES 1,200',
+      'SWEATSHIRTS': 'KES 2,100',
+      'T-SHIRTS': 'KES 1,199',
       'TRUCKER HATS': 'KES 400'
     };
 
-    // -----------------------------------
-    // CUSTOM DROPDOWN LOGIC
-    // -----------------------------------
     const dropdownHeader = document.getElementById('dropdownHeader');
     const dropdownOptions = document.getElementById('dropdownOptions');
     const selectedSizeText = document.getElementById('selectedSize');
     const dropdownOptionsList = document.querySelectorAll('.dropdown-option');
 
-    // Toggle dropdown
     if (dropdownHeader) {
       dropdownHeader.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isActive = dropdownHeader.classList.contains('active');
-        
-        // Close all other dropdowns first
-        document.querySelectorAll('.dropdown-header').forEach(header => {
-          if (header !== dropdownHeader) {
-            header.classList.remove('active');
-            header.nextElementSibling?.classList.remove('active');
-          }
-        });
-        
-        // Toggle this dropdown
         dropdownHeader.classList.toggle('active');
         dropdownOptions.classList.toggle('active');
-        
-        // Add smooth scroll to selected option
         if (dropdownOptions.classList.contains('active')) {
           const selectedOption = dropdownOptions.querySelector('.dropdown-option.selected');
-          if (selectedOption) {
-            dropdownOptions.scrollTop = selectedOption.offsetTop - dropdownOptions.offsetTop - 20;
-          }
+          if (selectedOption) dropdownOptions.scrollTop = selectedOption.offsetTop - dropdownOptions.offsetTop - 20;
         }
       });
     }
 
-    // Select option
     dropdownOptionsList.forEach(option => {
       option.addEventListener('click', () => {
         const value = option.getAttribute('data-value');
         const label = option.querySelector('.dropdown-label').textContent;
-        
-        // Update selected text
         selectedSizeText.textContent = `${value} - ${label}`;
         sizeHiddenInput.value = value;
-        
-        // Update visual selection
         dropdownOptionsList.forEach(opt => opt.classList.remove('selected'));
         option.classList.add('selected');
-        
-        // Close dropdown
         dropdownHeader.classList.remove('active');
         dropdownOptions.classList.remove('active');
-        
-        // Remove error
         sizeError.classList.remove('visible');
       });
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.custom-dropdown')) {
         dropdownHeader.classList.remove('active');
@@ -2235,137 +1820,50 @@
       }
     });
 
-    // Close dropdown on escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         dropdownHeader.classList.remove('active');
         dropdownOptions.classList.remove('active');
+        if (orderModal.classList.contains('active')) closeOrderModal();
       }
     });
 
-    // Keyboard navigation for dropdown
     if (dropdownHeader) {
       dropdownHeader.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          dropdownHeader.click();
-        }
-        
-        if (e.key === 'ArrowDown' && !dropdownOptions.classList.contains('active')) {
-          e.preventDefault();
-          dropdownHeader.click();
-        }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dropdownHeader.click(); }
+        if (e.key === 'ArrowDown' && !dropdownOptions.classList.contains('active')) { e.preventDefault(); dropdownHeader.click(); }
       });
     }
 
-    if (dropdownOptions) {
-      dropdownOptions.addEventListener('keydown', (e) => {
-        const currentIndex = Array.from(dropdownOptionsList).findIndex(opt => opt.classList.contains('selected'));
-        let newIndex = currentIndex;
-        
-        switch(e.key) {
-          case 'ArrowDown':
-            e.preventDefault();
-            newIndex = (currentIndex + 1) % dropdownOptionsList.length;
-            break;
-          case 'ArrowUp':
-            e.preventDefault();
-            newIndex = currentIndex === -1 ? dropdownOptionsList.length - 1 : (currentIndex - 1 + dropdownOptionsList.length) % dropdownOptionsList.length;
-            break;
-          case 'Enter':
-            e.preventDefault();
-            if (currentIndex !== -1) {
-              dropdownOptionsList[currentIndex].click();
-            }
-            break;
-          case 'Escape':
-            e.preventDefault();
-            dropdownHeader.classList.remove('active');
-            dropdownOptions.classList.remove('active');
-            dropdownHeader.focus();
-            break;
-        }
-        
-        if (newIndex !== currentIndex) {
-          dropdownOptionsList.forEach(opt => opt.classList.remove('selected'));
-          dropdownOptionsList[newIndex].classList.add('selected');
-          dropdownOptionsList[newIndex].scrollIntoView({ block: 'nearest' });
-        }
-      });
-    }
-
-    // Attach click handlers to all order buttons
     document.querySelectorAll('.order-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const product = btn.getAttribute('data-product') || 'PRODUCT';
-        openOrderModal(product);
+      btn.addEventListener('click', () => {
+        openOrderModal(btn.getAttribute('data-product') || 'PRODUCT');
       });
     });
 
-    // Open modal and set product
-    function openOrderModal(productName){
+    function openOrderModal(productName) {
       productInput.value = productName;
       selectedSizeText.textContent = 'Choose your size';
       sizeHiddenInput.value = '';
       quantityInput.value = '1';
       sizeError.classList.remove('visible');
       quantityError.classList.remove('visible');
-      
-      // Reset dropdown selection
       dropdownOptionsList.forEach(opt => opt.classList.remove('selected'));
-      
-      // Reset customization options
-      selectedDesign = '';
-      selectedColor = '';
-      currentProduct = productName;
-      
-      document.querySelectorAll('.design-option, .color-option, .style-option, .material-option').forEach(option => {
-        option.classList.remove('selected');
-      });
-      
-      // Hide all product options first
-      document.querySelectorAll('.product-options').forEach(option => {
-        option.style.display = 'none';
-      });
-      
-      // Show customization options for all products
+      selectedDesign = ''; selectedColor = ''; currentProduct = productName;
+      document.querySelectorAll('.design-option, .color-option, .style-option, .material-option').forEach(o => o.classList.remove('selected'));
+      document.querySelectorAll('.product-options').forEach(o => o.style.display = 'none');
       customizationOptions.classList.add('active');
-      
-      // Show specific options based on product
-      switch(productName) {
-        case 'HOODIES':
-          document.getElementById('hoodieOptions').style.display = 'block';
-          break;
-        case 'SWEATSHIRTS':
-          document.getElementById('sweatshirtOptions').style.display = 'block';
-          break;
-        case 'T-SHIRTS':
-          document.getElementById('tshirtOptions').style.display = 'block';
-          break;
-        case 'TRUCKER HATS':
-          document.getElementById('truckerHatOptions').style.display = 'block';
-          break;
-      }
-      
-      // Update price display
+      const map = { 'HOODIES': 'hoodieOptions', 'SWEATSHIRTS': 'sweatshirtOptions', 'T-SHIRTS': 'tshirtOptions', 'TRUCKER HATS': 'truckerHatOptions' };
+      if (map[productName]) document.getElementById(map[productName]).style.display = 'block';
       updateProductPriceInModal(productName);
-      
       orderModal.classList.add('active');
       orderModal.setAttribute('aria-hidden', 'false');
-
-      // Focus first input
-      setTimeout(() => {
-        if (dropdownHeader) {
-          dropdownHeader.focus();
-        }
-      }, 120);
+      setTimeout(() => { if (dropdownHeader) dropdownHeader.focus(); }, 120);
     }
 
-    // Update price in order modal
     function updateProductPriceInModal(productName) {
       const priceElement = document.getElementById('productPrice');
       const priceValueElement = document.getElementById('priceValue');
-      
       if (productPrices[productName]) {
         priceValueElement.textContent = productPrices[productName];
         priceElement.style.display = 'block';
@@ -2374,37 +1872,17 @@
       }
     }
 
-    // Close handlers
     const closeOrderBtn = document.getElementById('closeOrder');
     const cancelOrderBtn = document.getElementById('cancelOrder');
-    
-    if (closeOrderBtn) {
-      closeOrderBtn.addEventListener('click', closeOrderModal);
-    }
-    
-    if (cancelOrderBtn) {
-      cancelOrderBtn.addEventListener('click', closeOrderModal);
-    }
+    if (closeOrderBtn) closeOrderBtn.addEventListener('click', closeOrderModal);
+    if (cancelOrderBtn) cancelOrderBtn.addEventListener('click', closeOrderModal);
 
-    function closeOrderModal(){
+    function closeOrderModal() {
       orderModal.classList.remove('active');
       orderModal.setAttribute('aria-hidden', 'true');
-      
-      // Close dropdown if open
-      if (dropdownHeader) {
-        dropdownHeader.classList.remove('active');
-        dropdownOptions.classList.remove('active');
-      }
+      if (dropdownHeader) { dropdownHeader.classList.remove('active'); dropdownOptions.classList.remove('active'); }
     }
 
-    // Close on escape
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape' && orderModal.classList.contains('active')){
-        closeOrderModal();
-      }
-    });
-
-    // Design and color selection for all products
     document.querySelectorAll('.design-option').forEach(option => {
       option.addEventListener('click', () => {
         document.querySelectorAll('.design-option').forEach(opt => opt.classList.remove('selected'));
@@ -2421,105 +1899,36 @@
       });
     });
 
-    // SEND TO WHATSAPP
     const sendToWhatsAppBtn = document.getElementById('sendToWhatsApp');
     if (sendToWhatsAppBtn) {
       sendToWhatsAppBtn.addEventListener('click', () => {
         const product = productInput.value.trim();
         const size = sizeHiddenInput.value.trim();
         const quantity = Number(quantityInput.value);
-
-        // Validation
         let isValid = true;
-        
-        if(!size) {
-          sizeError.classList.add('visible');
-          if (dropdownHeader) {
-            dropdownHeader.style.borderColor = '#ff4d6d';
-          }
-          isValid = false;
-        } else {
-          sizeError.classList.remove('visible');
-          if (dropdownHeader) {
-            dropdownHeader.style.borderColor = '';
-          }
+        if (!size) { sizeError.classList.add('visible'); if (dropdownHeader) dropdownHeader.style.borderColor = '#ff4d6d'; isValid = false; }
+        else { sizeError.classList.remove('visible'); if (dropdownHeader) dropdownHeader.style.borderColor = ''; }
+        if (!quantity || quantity < 1) { quantityError.classList.add('visible'); isValid = false; }
+        else { quantityError.classList.remove('visible'); }
+        if (!selectedColor) { alert('Please select a color for your product'); isValid = false; }
+        if ((product === 'HOODIES' || product === 'SWEATSHIRTS' || product === 'TRUCKER HATS' || product === 'T-SHIRTS') && !selectedDesign) {
+          alert('Please select a design for your ' + product.toLowerCase()); isValid = false;
         }
-        
-        if(!quantity || quantity < 1) {
-          quantityError.classList.add('visible');
-          isValid = false;
-        } else {
-          quantityError.classList.remove('visible');
-        }
-
-        // Additional validation for customization options
-        if (!selectedColor) {
-          alert('Please select a color for your product');
-          isValid = false;
-        }
-        
-        // Product-specific validation
-        if (product === 'HOODIES' || product === 'SWEATSHIRTS' || product === 'TRUCKER HATS' || product === 'T-SHIRTS') {
-          if (!selectedDesign) {
-            alert('Please select a design for your ' + product.toLowerCase());
-            isValid = false;
-          }
-        }
-
-        if(!isValid) return;
-
-        // Build message
+        if (!isValid) return;
         const phone = '254745151478';
-        const messageLines = [
-          "Hello STARS! 👋",
-          "",
-          "I would like to place an order:",
-          `Product: ${product}`
-        ];
-
-        // Add price
-        if (productPrices[product]) {
-          messageLines.push(`Price: ${productPrices[product]}`);
-        }
-        
-        messageLines.push(
-          `Size: ${size}`,
-          `Quantity: ${quantity}`
-        );
-
-        // Add customization details based on product type
-        if (selectedColor) {
-          messageLines.push(`Color: ${selectedColor}`);
-        }
-        
-        if (selectedDesign) {
-          messageLines.push(`Design: ${selectedDesign}`);
-        }
-
-        messageLines.push(
-          "",
-          "Please let me know about availability and payment details.",
-          "",
-          "Thank you! ✨"
-        );
-        
+        const messageLines = ['Hello STARS!', '', 'I would like to place an order:', `Product: ${product}`];
+        if (productPrices[product]) messageLines.push(`Price: ${productPrices[product]}`);
+        messageLines.push(`Size: ${size}`, `Quantity: ${quantity}`);
+        if (selectedColor) messageLines.push(`Color: ${selectedColor}`);
+        if (selectedDesign) messageLines.push(`Design: ${selectedDesign}`);
+        messageLines.push('', 'Please let me know about availability and payment details.', '', 'Thank you!');
         const message = encodeURIComponent(messageLines.join('\n'));
-        const url = `https://wa.me/${phone}?text=${message}`;
-
-        // Open WhatsApp in new window/tab
-        window.open(url, '_blank');
-
-        // Close modal
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         closeOrderModal();
       });
     }
 
-    // Accessibility: when clicking outside panel, close
-    orderModal.addEventListener('click', (e) => {
-      if(e.target === orderModal){
-        closeOrderModal();
-      }
-    });
+    orderModal.addEventListener('click', (e) => { if (e.target === orderModal) closeOrderModal(); });
   </script>
 
 </body>
