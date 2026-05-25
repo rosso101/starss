@@ -1142,6 +1142,332 @@
       display: none;
     }
 
+    /* =============================================
+       NOVA MODAL
+    ============================================= */
+    #novaModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(10px);
+      z-index: 10003;
+      display: none;
+      opacity: 0;
+      transition: opacity .4s ease;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    #novaModal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .nova-panel {
+      position: relative;
+      max-width: 440px;
+      width: 100%;
+      background:
+        radial-gradient(ellipse at 50% -10%, rgba(255,77,109,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 110%, rgba(124,58,237,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 80%, rgba(6,182,212,0.08) 0%, transparent 40%),
+        rgba(4,4,22,0.98);
+      border-radius: 28px;
+      border: 1px solid rgba(255,77,109,0.28);
+      padding: 48px 36px 42px;
+      text-align: center;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03) inset,
+        0 0 80px rgba(255,77,109,0.12),
+        0 0 160px rgba(124,58,237,0.08),
+        0 50px 100px rgba(0,0,0,0.7);
+      animation: novaEntry .55s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+
+    @keyframes novaEntry {
+      from { transform: scale(0.8) translateY(30px); opacity: 0; }
+      to   { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    /* Inner star field */
+    .nova-inner-stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      border-radius: inherit;
+    }
+
+    .nova-star-dot {
+      position: absolute;
+      border-radius: 50%;
+      animation: novaTwinkle var(--nd) infinite ease-in-out var(--ndl);
+    }
+
+    @keyframes novaTwinkle {
+      0%,100% { opacity: 0.12; transform: scale(1); }
+      50%      { opacity: 1;    transform: scale(1.6); }
+    }
+
+    /* Pulsing ring behind logo */
+    .nova-glow-ring {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,77,109,0.08);
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: novaRingPulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .nova-glow-ring-2 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 1px solid rgba(124,58,237,0.1);
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: novaRingPulse 4s ease-in-out infinite 1.5s;
+      pointer-events: none;
+    }
+
+    @keyframes novaRingPulse {
+      0%,100% { transform: translateX(-50%) scale(1);    opacity: 0.6; }
+      50%      { transform: translateX(-50%) scale(1.06); opacity: 1;   }
+    }
+
+    /* Scanning line effect */
+    .nova-scan-line {
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,77,109,0.3), rgba(6,182,212,0.2), transparent);
+      animation: novaScan 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes novaScan {
+      0%   { top: -2px; opacity: 0; }
+      5%   { opacity: 1; }
+      95%  { opacity: 1; }
+      100% { top: 102%; opacity: 0; }
+    }
+
+    /* Content layer */
+    .nova-content { position: relative; z-index: 2; }
+
+    /* "COMING SOON" chip */
+    .nova-chip-row { margin-bottom: 24px; }
+
+    .nova-chip {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: rgba(255,77,109,0.95);
+      background: rgba(255,77,109,0.08);
+      border: 1px solid rgba(255,77,109,0.3);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-family: Orbitron, Inter;
+      display: inline-block;
+      animation: chipGlow 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes chipGlow {
+      from { box-shadow: 0 0 0 0 rgba(255,77,109,0);   border-color: rgba(255,77,109,0.3); }
+      to   { box-shadow: 0 0 18px 3px rgba(255,77,109,0.22); border-color: rgba(255,77,109,0.65); }
+    }
+
+    /* Logo + orbit */
+    .nova-logo-wrap {
+      position: relative;
+      display: inline-block;
+      margin: 8px 0 26px;
+    }
+
+    .nova-logo-text {
+      font-family: Orbitron, Inter;
+      font-size: clamp(56px, 16vw, 76px);
+      font-weight: 700;
+      background: linear-gradient(140deg, #ff4d6d 0%, #c084fc 45%, #67e8f9 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 12px;
+      display: block;
+      line-height: 1;
+      animation: novaLogoGlow 3.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes novaLogoGlow {
+      from { filter: drop-shadow(0 0 8px  rgba(255,77,109,0.35)); }
+      to   { filter: drop-shadow(0 0 30px rgba(192,132,252,0.7)) drop-shadow(0 0 55px rgba(255,77,109,0.28)); }
+    }
+
+    /* Orbiting dot */
+    .nova-orbit {
+      position: absolute;
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255,255,255,0.14);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: orbitSpin 7s linear infinite;
+      pointer-events: none;
+    }
+
+    .nova-orbit-2 {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255,77,109,0.08);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: orbitSpin 14s linear infinite reverse;
+      pointer-events: none;
+    }
+
+    @keyframes orbitSpin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .nova-planet {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff4d6d, #c084fc);
+      top: -5px; left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(255,77,109,0.9), 0 0 20px rgba(255,77,109,0.4);
+    }
+
+    .nova-planet-2 {
+      position: absolute;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #67e8f9, #7c3aed);
+      top: -3px; left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 8px rgba(103,232,249,0.8);
+    }
+
+    /* Body copy */
+    .nova-sub {
+      color: rgba(165,180,220,0.85);
+      font-size: 15px;
+      line-height: 1.75;
+      margin: 0 0 32px;
+    }
+
+    /* Notify button */
+    .nova-notify-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,77,109,0.45);
+      background: linear-gradient(135deg, rgba(255,77,109,0.14), rgba(124,58,237,0.14));
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: Orbitron, Inter;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all .3s cubic-bezier(.2,.9,.3,1);
+      position: relative;
+      overflow: hidden;
+      min-height: 54px;
+    }
+
+    .nova-notify-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,255,0.06) 50%,
+        transparent 100%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .nova-notify-btn:hover::before { transform: translateX(100%); }
+
+    .nova-notify-btn:hover {
+      border-color: rgba(255,77,109,0.8);
+      background: linear-gradient(135deg, rgba(255,77,109,0.24), rgba(124,58,237,0.24));
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(255,77,109,0.25), 0 0 24px rgba(255,77,109,0.12);
+    }
+
+    .nova-notify-btn.notified-state {
+      border-color: rgba(103,232,249,0.4);
+      background: linear-gradient(135deg, rgba(103,232,249,0.1), rgba(124,58,237,0.1));
+      transform: none;
+      box-shadow: 0 0 20px rgba(103,232,249,0.15);
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .nova-bell-icon { font-size: 20px; }
+
+    /* Success message */
+    .nova-notified-msg {
+      display: none;
+      margin-top: 18px;
+      font-size: 13px;
+      color: rgba(103,232,249,0.9);
+      letter-spacing: 0.8px;
+      animation: novaFadeUp .5s ease both;
+    }
+
+    .nova-notified-msg.visible { display: block; }
+
+    @keyframes novaFadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Close button */
+    .nova-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.45);
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s ease;
+      z-index: 10;
+    }
+
+    .nova-close-btn:hover {
+      background: rgba(255,77,109,0.1);
+      border-color: rgba(255,77,109,0.35);
+      color: white;
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
     @media (min-width: 768px) {
       .layer, .ring { display: block; }
       .parallax { display: block; }
@@ -1152,7 +1478,6 @@
       .cta-row { flex-direction: row; gap: 12px; }
       .cta-row .btn { width: auto; }
 
-      /* On desktop, left-align the secondary buttons */
       .cta-row-secondary { justify-content: flex-start; }
 
       .features { flex-direction: row; flex-wrap: wrap; }
@@ -1215,7 +1540,6 @@
       .countdown-value { font-size: 18px; }
       .countdown-unit { min-width: 40px; }
 
-      /* Centre the secondary buttons on mobile */
       .cta-row-secondary {
         justify-content: center;
         margin-top: 32px;
@@ -1226,6 +1550,9 @@
         font-size: 13px;
         padding: 12px 14px;
       }
+
+      .nova-panel { padding: 36px 22px 32px; border-radius: 22px; }
+      .nova-logo-text { letter-spacing: 8px; }
     }
 
     @media (max-width: 320px) {
@@ -1254,7 +1581,9 @@
 
   <div class="stars-bg" id="starsBackground"></div>
 
-  <!-- ORDER MODAL -->
+  <!-- ================================================
+       ORDER MODAL
+  ================================================= -->
   <div id="orderModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="order-panel" role="document">
       <div class="order-header">
@@ -1406,6 +1735,57 @@
     </div>
   </div>
 
+  <!-- ================================================
+       NOVA MODAL
+  ================================================= -->
+  <div id="novaModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="nova-panel">
+
+      <!-- Ambient inner star field -->
+      <div class="nova-inner-stars" id="novaInnerStars"></div>
+
+      <!-- Decorative rings -->
+      <div class="nova-glow-ring"></div>
+      <div class="nova-glow-ring-2"></div>
+
+      <!-- Scanning line -->
+      <div class="nova-scan-line"></div>
+
+      <!-- Close button -->
+      <button class="nova-close-btn" id="closeNova" aria-label="Close NOVA popup">✕</button>
+
+      <!-- Main content -->
+      <div class="nova-content">
+
+        <div class="nova-chip-row">
+          <span class="nova-chip">COMING SOON</span>
+        </div>
+
+        <div class="nova-logo-wrap">
+          <span class="nova-logo-text">NOVA</span>
+          <!-- Dual orbiting rings -->
+          <div class="nova-orbit"><div class="nova-planet"></div></div>
+          <div class="nova-orbit-2"><div class="nova-planet-2"></div></div>
+        </div>
+
+        <p class="nova-sub">
+          Something new is being born in the universe.<br>
+          NOVA isn't ready yet — but it's coming.
+        </p>
+
+        <button class="nova-notify-btn" id="novaNotifyBtn">
+          <span class="nova-bell-icon">🔔</span>
+          Notify Me
+        </button>
+
+        <div class="nova-notified-msg" id="novaNotifiedMsg">
+          ✦ You're on the list. We'll find you when it drops.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- PARALLAX -->
   <div class="parallax" id="parallax">
     <div class="layer" style="left:-10%;top:5%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,0.16), transparent 20%), radial-gradient(circle at 70% 70%, rgba(6,182,212,0.10), transparent 30%);filter:blur(40px);transform:translateZ(0)"></div>
@@ -1452,16 +1832,14 @@
           <div class="feature fade-up" data-delay="0.5"><strong>Quality</strong><div class="muted">Sustainably sourced materials</div></div>
         </div>
 
-        <!-- Original CTA row: Contact + Learn More -->
         <div class="cta-row fade-up" data-delay="0.6">
           <a class="btn primary" href="https://wa.me/254745151478" target="_blank">Contact</a>
           <a class="btn" href="#about">Learn more</a>
         </div>
 
-        <!-- Secondary CTA row: View Collections + NOVA — separated with extra top margin, centred on mobile -->
         <div class="cta-row-secondary fade-up" data-delay="0.75">
           <a class="btn btn-ghost" href="#collection" id="viewCollectionsBtn">View Collections</a>
-          <a class="btn btn-nova" href="#" id="novaBtn" target="_blank">NOVA</a>
+          <a class="btn btn-nova" href="#" id="novaBtn">NOVA</a>
         </div>
 
       </div>
@@ -1581,7 +1959,9 @@
   </div>
 
   <script>
-    // Viewport height fix
+    // -----------------------------------------------
+    // VIEWPORT HEIGHT FIX
+    // -----------------------------------------------
     function setVH() {
       let vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -1598,18 +1978,16 @@
     }, false);
 
     document.body.addEventListener('touchmove', function(e) {
-      if (e.target.closest('.order-panel, .dropdown-options')) e.stopPropagation();
+      if (e.target.closest('.order-panel, .dropdown-options, .nova-panel')) e.stopPropagation();
     }, { passive: true });
 
     // -----------------------------------------------
-    // VIEW COLLECTIONS: smooth scroll to #collection
+    // VIEW COLLECTIONS: smooth scroll
     // -----------------------------------------------
     document.getElementById('viewCollectionsBtn').addEventListener('click', function(e) {
       e.preventDefault();
       const target = document.getElementById('collection');
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     // -----------------------------------------------
@@ -1743,7 +2121,9 @@
       });
     }
 
-    // Live counter
+    // -----------------------------------------------
+    // LIVE COUNTER
+    // -----------------------------------------------
     function animateCounter(element, targetValue, duration = 1000) {
       const startValue = parseInt(element.textContent) || 0;
       const startTime = performance.now();
@@ -1765,7 +2145,9 @@
       setTimeout(updateLiveCounter, Math.random() * (8000 - 2000) + 2000);
     }
 
+    // -----------------------------------------------
     // ORDER MODAL
+    // -----------------------------------------------
     const orderModal = document.getElementById('orderModal');
     const productInput = document.getElementById('product');
     const sizeHiddenInput = document.getElementById('size');
@@ -1825,6 +2207,7 @@
         dropdownHeader.classList.remove('active');
         dropdownOptions.classList.remove('active');
         if (orderModal.classList.contains('active')) closeOrderModal();
+        if (novaModal.classList.contains('active')) closeNovaModal();
       }
     });
 
@@ -1929,6 +2312,91 @@
     }
 
     orderModal.addEventListener('click', (e) => { if (e.target === orderModal) closeOrderModal(); });
+
+    // -----------------------------------------------
+    // NOVA MODAL
+    // -----------------------------------------------
+    const novaModal = document.getElementById('novaModal');
+    const novaNotifyBtn = document.getElementById('novaNotifyBtn');
+    const novaNotifiedMsg = document.getElementById('novaNotifiedMsg');
+    let novaStarsBuilt = false;
+
+    // Open via NOVA button
+    document.getElementById('novaBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      openNovaModal();
+    });
+
+    function openNovaModal() {
+      novaModal.style.display = 'flex';
+      // Small delay so display:flex registers before opacity transition
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          novaModal.classList.add('active');
+          novaModal.setAttribute('aria-hidden', 'false');
+        });
+      });
+      buildNovaStars();
+      setTimeout(() => { if (novaNotifyBtn) novaNotifyBtn.focus(); }, 200);
+    }
+
+    function closeNovaModal() {
+      novaModal.classList.remove('active');
+      novaModal.setAttribute('aria-hidden', 'true');
+      setTimeout(() => {
+        novaModal.style.display = 'none';
+        // Reset button state for next open
+        novaNotifyBtn.classList.remove('notified-state');
+        novaNotifyBtn.innerHTML = '<span class="nova-bell-icon">🔔</span> Notify Me';
+        novaNotifyBtn.style.pointerEvents = '';
+        novaNotifiedMsg.classList.remove('visible');
+      }, 420);
+    }
+
+    function buildNovaStars() {
+      if (novaStarsBuilt) return;
+      novaStarsBuilt = true;
+      const container = document.getElementById('novaInnerStars');
+      const colors = [
+        'rgba(255,255,255,0.9)',
+        'rgba(255,255,255,0.9)',
+        'rgba(255,255,255,0.9)',
+        'rgba(255,77,109,0.95)',
+        'rgba(124,58,237,0.95)',
+        'rgba(103,232,249,0.95)'
+      ];
+      for (let i = 0; i < 50; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'nova-star-dot';
+        const sz = 0.8 + Math.random() * 2.4;
+        const col = colors[Math.floor(Math.random() * colors.length)];
+        dot.style.cssText = [
+          `width:${sz}px`,
+          `height:${sz}px`,
+          `left:${Math.random() * 100}%`,
+          `top:${Math.random() * 100}%`,
+          `background:${col}`,
+          `--nd:${2 + Math.random() * 6}s`,
+          `--ndl:-${Math.random() * 6}s`
+        ].join(';');
+        container.appendChild(dot);
+      }
+    }
+
+    // Notify Me button
+    novaNotifyBtn.addEventListener('click', function() {
+      this.classList.add('notified-state');
+      this.innerHTML = '✦ You\'re on the list!';
+      novaNotifiedMsg.classList.add('visible');
+    });
+
+    // Close button
+    document.getElementById('closeNova').addEventListener('click', closeNovaModal);
+
+    // Click outside to close
+    novaModal.addEventListener('click', function(e) {
+      if (e.target === novaModal) closeNovaModal();
+    });
   </script>
 
 </body>
