@@ -1028,6 +1028,8 @@
       text-align: center;
       transition: all 0.2s ease;
       font-size: 13px;
+      position: relative;
+      overflow: visible;
     }
 
     .color-option:hover, .style-option:hover, .material-option:hover {
@@ -1049,6 +1051,56 @@
       margin-right: 6px;
       vertical-align: middle;
       border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* ── SOLD OUT STATE ── */
+    .color-option.sold-out {
+      pointer-events: none;
+      cursor: not-allowed;
+      opacity: 0.45;
+      filter: grayscale(0.3);
+    }
+    .color-option.sold-out:hover {
+      background: rgba(255,255,255,0.03);
+      transform: none;
+    }
+
+    .sold-out-sticker {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      z-index: 6;
+      background: linear-gradient(145deg, #0a0a0a, #000000);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      font-family: Orbitron, Inter;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 5px 9px 5px 8px;
+      border-radius: 7px;
+      transform: rotate(9deg);
+      box-shadow:
+        0 6px 14px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(255,255,255,0.04) inset,
+        0 0 10px rgba(124,58,237,0.15);
+      overflow: hidden;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .sold-out-sticker .sticker-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .sticker-dot {
+      position: absolute;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 3px rgba(255,255,255,0.9);
+      z-index: 1;
     }
 
     .gallery {
@@ -1702,7 +1754,16 @@
               <div class="option-title">Choose Color</div>
               <div class="color-grid">
                 <div class="color-option" data-color="White"><span class="color-swatch" style="background-color: #ffffff;"></span>White</div>
-                <div class="color-option" data-color="Black"><span class="color-swatch" style="background-color: #000;"></span>Black</div>
+                <div class="color-option sold-out" data-color="Black">
+                  <span class="color-swatch" style="background-color: #000;"></span>Black
+                  <span class="sold-out-sticker">
+                    <span class="sticker-text">Sold Out</span>
+                    <span class="sticker-dot" style="width:2px;height:2px;top:3px;left:5px;"></span>
+                    <span class="sticker-dot" style="width:1.5px;height:1.5px;bottom:4px;left:14px;"></span>
+                    <span class="sticker-dot" style="width:2px;height:2px;top:6px;right:6px;"></span>
+                    <span class="sticker-dot" style="width:1px;height:1px;bottom:3px;right:16px;"></span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -2276,6 +2337,7 @@
 
     document.querySelectorAll('.color-option').forEach(option => {
       option.addEventListener('click', () => {
+        if (option.classList.contains('sold-out')) return;
         document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
         option.classList.add('selected');
         selectedColor = option.getAttribute('data-color');
