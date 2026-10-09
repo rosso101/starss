@@ -1,6 +1,3 @@
-
-
-Stars nova style · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,9 +42,8 @@ Stars nova style · HTML
       background-attachment: fixed;
       color: var(--white);
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      overflow-x: hidden;
+      overflow-x: clip;
       width: 100%;
-      max-width: 100vw;
       -webkit-text-size-adjust: 100%;
     }
     img { max-width: 100%; }
@@ -613,12 +609,13 @@ Stars nova style · HTML
     .social-btn:hover { border-color: var(--accent); color: var(--accent); }
     .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 2px; }
     .footer-nova-link {
+      display: inline-block; text-decoration: none;
       font-size: 11px; letter-spacing: 2px; color: var(--accent); background: none; border: none;
       opacity: 0.6; transition: opacity 0.3s; margin-top: 6px;
     }
     .footer-nova-link:hover { opacity: 1; }
  
-    /* NOVA COMING-SOON POPUP */
+    /* NOVA COMING-SOON POPUP (no longer triggered — kept so nothing else breaks) */
     .nova-panel {
       position: relative; width: 100%; max-width: 440px; overflow: hidden;
       background:
@@ -756,7 +753,7 @@ Stars nova style · HTML
     <ul class="nav-links">
       <li><a href="#collection" data-action="shop" data-cat="all">Collection</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#" data-action="open-nova">NOVA</a></li>
+      <li><a href="https://starsapprel-nova.vercel.app/" target="_blank" rel="noopener">NOVA</a></li>
     </ul>
     <a class="nav-cta" href="https://wa.me/254745151478" target="_blank" rel="noopener">Contact</a>
   </nav>
@@ -779,7 +776,7 @@ Stars nova style · HTML
           Shop Now
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </button>
-        <button class="btn-ghost-hero" data-action="open-nova">Meet NOVA →</button>
+        <a class="btn-ghost-hero" href="https://starsapprel-nova.vercel.app/" target="_blank" rel="noopener">Check out NOVA →</a>
       </div>
       <div class="live-pill"><div class="badge-dot"></div><span>Live</span><b id="liveCounter">289</b><span>online</span></div>
     </div>
@@ -847,13 +844,13 @@ Stars nova style · HTML
       </div>
       <div class="fomo-card accent-card reveal reveal-delay-1">
         <div class="fomo-blob-decor"></div>
-        <div class="fomo-card-eyebrow">Athleisure — Coming Soon</div>
+        <div class="fomo-card-eyebrow">Athleisure — Now Live</div>
         <h3 class="fomo-card-title">MEET<br>NOVA</h3>
-        <p class="fomo-card-body">A new athleisure line from STARS. Be first to know when it drops.</p>
-        <button class="fomo-card-cta" data-action="open-nova">
-          Get Notified
+        <p class="fomo-card-body">The new athleisure line from STARS is here. Come take a look.</p>
+        <a class="fomo-card-cta" href="https://starsapprel-nova.vercel.app/" target="_blank" rel="noopener">
+          Check out NOVA
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
+        </a>
       </div>
     </div>
   </section>
@@ -881,7 +878,7 @@ Stars nova style · HTML
         </a>
       </div>
       <div class="footer-copy">© 2026 STARS</div>
-      <button class="footer-nova-link" data-action="open-nova">Meet NOVA →</button>
+      <a class="footer-nova-link" href="https://starsapprel-nova.vercel.app/" target="_blank" rel="noopener">Check out NOVA →</a>
     </div>
   </footer>
  
@@ -946,7 +943,7 @@ Stars nova style · HTML
     </div>
   </div>
  
-  <!-- NOVA POPUP -->
+  <!-- NOVA POPUP (no longer triggered by any button) -->
   <div class="nova-overlay" id="novaOverlay" aria-hidden="true">
     <div class="nova-panel" role="dialog" aria-modal="true" aria-label="NOVA coming soon">
       <div class="nova-stars" id="novaStars"></div>
@@ -1292,7 +1289,7 @@ Stars nova style · HTML
     }
  
     // ============================================================
-    // NOVA POPUP
+    // NOVA POPUP (unused now — NOVA buttons link to the live site)
     // ============================================================
     let novaStarsBuilt = false;
     function openNova() {
@@ -1390,4 +1387,3 @@ Stars nova style · HTML
   </script>
 </body>
 </html>
- 
