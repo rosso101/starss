@@ -308,6 +308,7 @@
     .p-card:hover .p-photo { transform: scale(1.03); }
     .p-card.large { grid-column: span 7; }
     .p-card.medium { grid-column: span 5; }
+    .p-card.full { grid-column: 1 / -1; }
     .product-grid.solo .p-card { grid-column: 1 / -1; }
  
     .p-img { flex: 1; min-height: 440px; position: relative; overflow: hidden; background: linear-gradient(145deg, #0d0d26 0%, #14143a 100%); }
@@ -439,8 +440,14 @@
     .design-btn.selected::before { background: linear-gradient(to top, rgba(var(--accent-rgb),0.55), rgba(3,3,19,0.1)); }
  
     .size-grid, .color-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+    .size-btn.has-price { height: auto; padding: 9px 18px; line-height: 1.5; }
+    .size-price { display: block; font-size: 10px; letter-spacing: 0.5px; color: var(--accent); }
+    .size-note { margin-top: 12px; font-size: 12px; line-height: 1.6; color: var(--accent); }
+    .size-note:empty { display: none; }
+    .p-note { margin-top: 6px; font-size: 12px; line-height: 1.5; color: var(--soft); max-width: 420px; }
+    .p-from { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
     .size-btn {
-      width: 46px; height: 46px; border-radius: 10px;
+      min-width: 46px; height: 46px; padding: 0 12px; border-radius: 10px;
       border: 1px solid rgba(255,255,255,0.1); background: transparent; color: var(--muted);
       font-size: 12px; letter-spacing: 1px; transition: all 0.25s;
     }
@@ -714,7 +721,7 @@
       .footer-right { text-align: left; grid-column: unset; }
       .modal-sheet { padding: 24px 18px 40px; border-radius: 22px 22px 0 0; }
       .modal-product-name { font-size: clamp(18px, 5vw, 24px); }
-      .size-btn { width: 42px; height: 42px; font-size: 11px; }
+      .size-btn { min-width: 42px; height: 42px; font-size: 11px; }
       .color-btn { padding: 7px 12px; font-size: 11px; }
       .design-grid { grid-template-columns: 1fr 1fr; }
       .options-sheet { max-height: 92vh; border-radius: 20px; padding: 26px 18px 30px; }
@@ -807,6 +814,7 @@
         <button class="cat-tab" data-action="filter" data-cat="sweatshirts">Sweatshirts</button>
         <button class="cat-tab" data-action="filter" data-cat="tshirts">T-Shirts</button>
         <button class="cat-tab" data-action="filter" data-cat="hats">Hats</button>
+        <button class="cat-tab" data-action="filter" data-cat="totes">Tote Bags</button>
       </div>
     </div>
     <div class="product-grid" id="productGrid"></div>
@@ -822,7 +830,7 @@
         <p class="lifestyle-body">STARS began as a small collective in May 2024. We design clothing that helps you stand out — through bold shapes and community-led drops. Our mission is to make youth feel proud and seen.</p>
         <div class="lifestyle-stats">
           <div><div class="stat-num">2024</div><div class="stat-label">Established</div></div>
-          <div><div class="stat-num">4</div><div class="stat-label">Piece Collection</div></div>
+          <div><div class="stat-num">5</div><div class="stat-label">Piece Collection</div></div>
           <div><div class="stat-num">100%</div><div class="stat-label">Self-Crafted Designs</div></div>
         </div>
       </div>
@@ -866,6 +874,7 @@
       <button data-action="shop" data-cat="sweatshirts">Sweatshirts</button>
       <button data-action="shop" data-cat="tshirts">T-Shirts</button>
       <button data-action="shop" data-cat="hats">Trucker Hats</button>
+      <button data-action="shop" data-cat="totes">Tote Bags</button>
       <a href="https://wa.me/254745151478" target="_blank" rel="noopener">Contact &amp; Orders</a>
     </div>
     <div class="footer-right">
@@ -899,6 +908,7 @@
       <div class="modal-section" id="secSize">
         <span class="modal-label">Size</span>
         <div class="size-grid" id="sizeGrid"></div>
+        <div class="size-note" id="sizeNote"></div>
       </div>
       <div class="modal-section" id="secColor">
         <span class="modal-label">Colour</span>
@@ -1007,12 +1017,34 @@
           { name: 'White on Black', dot: '#ffffff' },
           { name: 'White on Pink',  dot: '#e74482' }
         ]
+      },
+      {
+        // TOTE BAGS — images go in the images/ folder as tote1, tote2, tote3...
+        // Change the extension (.png / .jpg) below to match your files,
+        // and add/remove design lines to match how many photos you have.
+        id: 'totes', name: 'Tote Bags', price: 499,
+        img: 'images/Toteplaceholder.jpg', span: 'full',
+        designs: [
+          { name: 'Tote 1', img: 'images/tote1.png' },
+          { name: 'Tote 2', img: 'images/tote2.png' },
+          { name: 'Tote 3', img: 'images/tote3.png' }
+        ],
+        sizes: ['Small', 'Medium', 'Large'],
+        sizePrices: { Small: 499, Medium: 599, Large: 889 },
+        note: 'Large comes with a mini pocket and a thicker material.',
+        colors: [ { name: 'Black', dot: '#000000' }, { name: 'White', dot: '#f9f9f9' } ]
       }
     ];
  
     const $ = id => document.getElementById(id);
     const kes = n => 'KES ' + n.toLocaleString('en-US');
     const byId = id => PRODUCTS.find(p => p.id === id);
+    // Products with `sizePrices` charge per size; everything else uses `price`
+    const minPrice = p => p.sizePrices ? Math.min(...Object.values(p.sizePrices)) : p.price;
+    const unitPrice = (p, size) => (p.sizePrices && p.sizePrices[size]) || minPrice(p);
+    const priceHTML = p => p.sizePrices
+      ? `<span class="p-from">From</span> ${kes(minPrice(p))}`
+      : `${kes(p.price)}${p.old ? ` <span class="p-price-old">${kes(p.old)}</span>` : ''}`;
  
     // ============================================================
     // RENDER PRODUCT GRID
@@ -1032,7 +1064,8 @@
         <div class="p-overlay">
           <div class="p-tag">${p.name}</div>
           <div class="p-name">${p.name}</div>
-          <div class="p-price">${kes(p.price)} <span class="p-price-old">${kes(p.old)}</span></div>
+          <div class="p-price">${priceHTML(p)}</div>
+          ${p.note ? `<div class="p-note">${p.note}</div>` : ''}
           <button class="get-yours-btn" data-action="open-order" data-id="${p.id}">
             Order Now
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -1199,7 +1232,7 @@
           <div class="subproduct-media"><img src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.remove()"></div>
           <div class="subproduct-info">
             <div class="subproduct-name">${d.name}</div>
-            <div class="subproduct-price">${kes(p.price)}</div>
+            <div class="subproduct-price">${p.sizePrices ? 'From ' + kes(minPrice(p)) : kes(p.price)}</div>
           </div>
         </button>`).join('');
       openOverlay($('optionsOverlay'));
@@ -1217,14 +1250,16 @@
  
       $('orderTag').textContent = 'On Sale';
       $('orderName').textContent = p.name;
-      $('orderPrice').innerHTML = `${kes(p.price)} <span class="p-price-old">${kes(p.old)}</span>`;
+      $('sizeNote').textContent = p.note || '';
       $('qtyDisplay').textContent = '1';
       $('formError').classList.remove('show');
       document.querySelectorAll('.modal-section').forEach(s => s.classList.remove('needs'));
  
       $('designGrid').innerHTML = p.designs.map((d, i) => `
         <button class="design-btn${d.name === order.design ? ' selected' : ''}" data-action="pick-design" data-i="${i}" style="background-image:url('${d.img}')"><span>${d.name}</span></button>`).join('');
-      $('sizeGrid').innerHTML = p.sizes.map(s => `<button class="size-btn" data-action="pick-size" data-size="${s}">${s}</button>`).join('');
+      $('sizeGrid').innerHTML = p.sizes.map(s => p.sizePrices
+        ? `<button class="size-btn has-price" data-action="pick-size" data-size="${s}">${s}<span class="size-price">${kes(p.sizePrices[s])}</span></button>`
+        : `<button class="size-btn" data-action="pick-size" data-size="${s}">${s}</button>`).join('');
       $('colorGrid').innerHTML = p.colors.map((c, i) => `
         <button class="color-btn${c.soldOut ? ' sold-out' : ''}" data-action="pick-color" data-i="${i}" ${c.soldOut ? 'disabled aria-disabled="true"' : ''}>
           <span class="color-dot" style="background:${c.dot}"></span>${c.name}
@@ -1238,12 +1273,15 @@
  
     function updateSummary() {
       const { p, design, size, color, qty } = order;
+      $('orderPrice').innerHTML = p.sizePrices
+        ? (size ? kes(unitPrice(p, size)) : 'From ' + kes(minPrice(p)))
+        : priceHTML(p);
       $('sumItem').textContent = p.name;
       $('sumDesign').textContent = design || '—';
       $('sumSize').textContent = size || '—';
       $('sumColor').textContent = color || '—';
       $('sumQty').textContent = qty;
-      $('sumTotal').textContent = kes(p.price * qty);
+      $('sumTotal').textContent = kes(unitPrice(p, size) * qty);
     }
  
     function select(container, btn) {
@@ -1276,12 +1314,12 @@
         'Hello STARS!', '',
         'I would like to place an order:',
         `Product: ${p.name.toUpperCase()}`,
-        `Price: ${kes(p.price)}`,
+        `Price: ${kes(unitPrice(p, size))}`,
         `Size: ${size}`,
         `Quantity: ${qty}`,
         `Color: ${color}`,
         `Design: ${design}`,
-        `Total: ${kes(p.price * qty)}`,
+        `Total: ${kes(unitPrice(p, size) * qty)}`,
         '', 'Please let me know about availability and payment details.', '', 'Thank you!'
       ];
       window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
